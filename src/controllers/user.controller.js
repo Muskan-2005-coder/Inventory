@@ -11,7 +11,7 @@ const register = async (req, res) => {
   const { user, token } = await userService.register(req.userData)
 
   res.cookie('jwt_token', token, cookieOptions)
-  res.status(StatusCodes.CREATED).json({ user })
+  res.status(StatusCodes.CREATED).json({ message: "User Created Successfully", user })
 }
 
 const login = async (req, res) => {

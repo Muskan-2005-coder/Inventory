@@ -35,14 +35,12 @@ class UserService {
       }
     
       const isPassword = await bcrypt.compare(userDetails.password, user.password)
-      console.log(isPassword)
       if(!isPassword){
         throw new NotFoundError('Incorrect Credentials')
       }
     
       const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, jwtOptions)
       user.password = undefined
-      console.log(user, token)
       return { user, token }
 
     } catch (error) {
