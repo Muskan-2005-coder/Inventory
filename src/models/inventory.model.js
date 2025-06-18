@@ -10,8 +10,6 @@
  * thresholdLimit      : number     // When to trigger low stock alert
  * shelfLifeDays       : number     // Expected life span
  * restockRecommended  : boolean    // Used by AI to suggest restocking
- * createdAt           : Date       // Timestamp
- * updatedAt           : Date       // Timestamp
  */
 
 const productCategories = [

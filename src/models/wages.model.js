@@ -7,8 +7,6 @@
  * totalSalary   : number     // Computed from wage/hour
  * overworked    : boolean    // True if exceeded healthy hours
  * calculatedAt  : Date       // Payroll run date
- * createdAt     : Date       // Timestamp
- * updatedAt     : Date       // Timestamp
  */
 
 const mongoose = require('mongoose');
@@ -49,5 +47,5 @@ const wageSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-const WageModel = mongoose.model('wage', wageSchema);
-module.exports = WageModel;
+const wageModel = mongoose.model('wage', wageSchema);
+module.exports = wageModel;

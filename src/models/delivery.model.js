@@ -8,8 +8,6 @@
  * assignedTo       : ObjectId   // Driver (user)
  * eta              : Date       // AI-predicted ETA
  * transportMode    : string     // Enum: "truck", "bike", "drone"
- * lastUpdated      : Date       // For live tracking
- * createdAt        : Date       // Timestamp
  */
 
 const mongoose = require('mongoose');
