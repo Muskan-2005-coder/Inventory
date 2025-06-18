@@ -7,14 +7,17 @@ const logger = require("../utils/logger")
 
 const userService = new UserService(new UserRepository)
 
-const register = async(req, res) => {
-  const { token, user } = await userService.register(req.body)
+const register = async (req, res) => {
+  const { user, token } = await userService.register(req.body)
   res.cookie('jwt_token', token, cookieOptions)
-  res.status(StatusCodes.OK).json({ message: user, token: token })
+  res.status(StatusCodes.CREATED).json({ user })
 }
 
-const login = async(req, res) => {
-  res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
+const login = async (req, res) => {
+  console.log(req.body)
+  const { user, token } = await userService.login(req.body.email, req.body.password)
+  // res.cookie('jwt_token', token, cookieOptions)
+  res.status(StatusCodes.OK).json({ message: "User Login Successful", user})
 }
 
 const getUser = async(req, res) => {

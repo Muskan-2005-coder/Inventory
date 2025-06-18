@@ -32,6 +32,12 @@ const userSchema = new mongoose.Schema({
     select: false
   },
 
+  phone: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+
   password: {
     type: String,
     required: true,

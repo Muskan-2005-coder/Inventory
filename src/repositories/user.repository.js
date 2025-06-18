@@ -27,6 +27,17 @@ class UserRepository {
       throw error
     }
   }
+
+  async getUserByPhone(phone) {
+    try {
+      const user = await Users.findOne({ phone }).select('+password +email')
+      return user
+
+    } catch (error) {
+      logger.error(`[UserRepository][getUserByEmail] :: ${error.message}`, error)
+      throw error
+    }
+  }
   
   async getUserById(userId) {
     try {
