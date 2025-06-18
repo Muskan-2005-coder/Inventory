@@ -3,11 +3,11 @@ const logger = require("../utils/logger")
 
 const validator = (schema) => (req, res, next) => {
   try {
-    const result = schema.parse(req.body)
+    schema.parse(req.body)
     next()
 
   } catch (error) {
-    logger.error('Insufficient Details Reached', error)
+    logger.error('Invalid Request Params Received', error)
     throw new ClientError.BadRequestError(`[Validator] :: ${error.message}`, error)
   }
 }
