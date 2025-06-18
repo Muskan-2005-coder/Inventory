@@ -11,6 +11,7 @@ const register = async (req, res) => {
   const { user, token } = await userService.register(req.userData)
 
   res.cookie('jwt_token', token, cookieOptions)
+  res.setHeader('Authorization', `Bearer ${token}`);
   res.status(StatusCodes.CREATED).json({ message: "User Created Successfully", user })
 }
 
@@ -18,7 +19,8 @@ const login = async (req, res) => {
   console.log(req.userData)
   const { user, token } = await userService.login(req.userData)
 
-  res.cookie('jwt_token', token, cookieOptions)
+  res.cookie('token', token, cookieOptions)
+  res.setHeader('Authorization', `Bearer ${token}`);
   res.status(StatusCodes.OK).json({ message: "User Login Successful", user})
 }
 
