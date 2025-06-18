@@ -11,30 +11,30 @@ class UserRepository {
       return user
 
     } catch (error) {
-      console.log('Something Wrong with Repository layer')
-      throw error
+      logger.error(`[UserRepository][registerUser] :: ${error.message}`, error);
+      throw error;
     }
   }
   
   async getUserByEmail (email) {
     try {
-      const user = await Users.findOne({ email })
+      const user = await Users.findOne({ email }).select('+password +email')
       return user
 
     } catch (error) {
-      console.log('Something Wrong with Repository layer')
-      throw error
+      logger.error(`[UserRepository][getUserByEmail] :: ${error.message}`, error);
+      throw error;
     }
   }
   
   async getUserByUsername (username) {
     try {
-      const user = await Users.findOne({ username })
+      const user = await Users.findOne({ username }).select('+password +email')
       return user
       
     } catch (error) {
-      console.log('Something Wrong with Repository layer')
-      throw error
+      logger.error(`[UserRepository][getUserByUsername] :: ${error.message}`, error);
+      throw error;
     }
   }
   
@@ -44,8 +44,30 @@ class UserRepository {
       return users
       
     } catch (error) {
-      console.log('Something Wrong with Repository layer')
-      throw error
+      logger.error(`[UserRepository][getAllUsers] :: ${error.message}`, error);
+      throw error;
+    }
+  }
+
+  async updateUser (userId, userDetails) {
+    try {
+      const updatedUser = await Users.findByIdAndUpdate(userId, userDetails, { new: true })
+      return updatedUser
+
+    } catch (error) {
+      logger.error(`[UserRepository][updateUser] :: ${error.message}`, error);
+      throw error;
+    }
+  }
+
+  async deleteUserWithId (userId) {
+    try {
+      const deletedUser = await Users.findByIdAndDelete(userId)
+      return deletedUser
+
+    } catch (error) {
+      logger.error(`[UserRepository][deleteUserWithId] :: ${error.message}`, error);
+      throw error;
     }
   }
 }
