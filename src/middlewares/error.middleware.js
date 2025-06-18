@@ -1,24 +1,38 @@
-const BaseError = require('../errors/base.error')
 const { StatusCodes } = require('http-status-codes')
-const logger = require('../utils/logger')
 
-const errorMw = (error, req, res, next) => {
-  if (error instanceof BaseError) {
-    return res.status(error.statusCode).json({
+const logger = require('../utils/logger');
+const { BaseError } = require('../errors');
+
+const errorMw = (err, req, res, next) => {
+
+  logger.error(`[ErrorHandler] :: ${err.name}: ${err.message}`, {
+    stack: err.stack,
+    request: {
+      method: req.method,
+      url: req.originalUrl,
+      body: req.body
+    }
+  });
+
+  if (err instanceof BaseError) {
+    return res.status(err.statusCode).json({
       success: false,
-      message: error.message,
-      error: error.name,
-      meta: error.meta || {}
-    })
+      message: err.message,
+      error: {
+        name: err.name,
+        details: err.details || []
+      }
+    });
   }
 
-  logger.error('Something went wrong!', error)
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     success: false,
-    message: 'Something went wrong',
-    error: 'InternalServerError',
-    meta: {}
-  })
+    message: 'An unexpected internal server error occurred.',
+    error: {
+      name: 'InternalServerError',
+      details: []
+    }
+  });
 }
 
 module.exports = errorMw

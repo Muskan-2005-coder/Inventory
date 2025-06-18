@@ -2,8 +2,9 @@
  * In this Layer we write only the Operations to perform on DB
  * NOT the LOGIC behind our main Business -> So it's like our CRUD Manager for DB
  */
+const { BadRequestError } = require("../errors/client.error");
 const { Users } = require("../models")
-const logger = require('winston').createLogger()
+const logger = require('../utils/logger');
 
 class UserRepository {
   async registerUser (userDetails) {
@@ -13,151 +14,71 @@ class UserRepository {
 
     } catch (error) {
       logger.error(`[UserRepository][registerUser] :: ${error.message}`, error)
-      throw error
+      throw new BadRequestError('User Already Exists, Kindly Login!')
     }
+  }
+
+  async getUser(userDetails) {
+    const fieldMap = { userId: '_id', email: 'email', phone: 'phone' }
+    const key = Object.keys(fieldMap).find(k => userDetails[k])
+
+    if (!key) throw new BadRequestError('No valid identifier provided. Expected email, phone, or userId.')
+
+    const query = { [fieldMap[key]]: userDetails[key] }
+    const user = await Users.findOne(query).select('+password +email')
+    return user
   }
   
   async getUserByEmail (email) {
-    try {
-      const user = await Users.findOne({ email }).select('+password +email')
-      return user
-
-    } catch (error) {
-      logger.error(`[UserRepository][getUserByEmail] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.findOne({ email }).select('+password +email')
   }
 
   async getUserByPhone(phone) {
-    try {
-      const user = await Users.findOne({ phone }).select('+password +email')
-      return user
-
-    } catch (error) {
-      logger.error(`[UserRepository][getUserByEmail] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.findOne({ phone }).select('+password +email')
   }
   
   async getUserById(userId) {
-    try {
-      const user = await Users.findById(userId).select('+password +email')
-      return user
-
-    } catch (error) {
-      logger.error(`[UserRepository][getUserById] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.findById(userId).select('+password +email')
   }
 
   async getUsersByRole(role) {
-    try {
-      const users = await Users.find({ role })
-      return users
-      
-    } catch (error) {
-      logger.error(`[UserRepository][getUsersByRole] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ role })
   }
 
   async getUsersByShift(shift) {
-    try {
-      const users = await Users.find({ shift })
-      return users
-
-    } catch (error) {
-      logger.error(`[UserRepository][getUsersByShift] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ shift })
   }
 
   async getActiveUsers() {
-    try {
-      const users = await Users.find({ active: true })
-      return users
-
-    } catch (error) {
-      logger.error(`[UserRepository][getActiveUsers] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ active: true })
   }
 
   async getInactiveUsers() {
-    try {
-      const users = await Users.find({ active: false })
-      return users
-
-    } catch (error) {
-      logger.error(`[UserRepository][getInactiveUsers] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ active: false })
   }
 
   async getUsersWithExtraShift() {
-    try {
-      const users = await Users.find({ extraShift: true })
-      return users
-
-    } catch (error) {
-      logger.error(`[UserRepository][getUsersWithExtraShift] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ extraShift: true })
   }
 
   async getAllUsers () {
-    try {
-      const users = await Users.find()
-      return users
-      
-    } catch (error) {
-      logger.error(`[UserRepository][getAllUsers] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find()
   }
 
   async updateUser (userId, userDetails) {
-    try {
-      const updatedUser = await Users.findByIdAndUpdate(userId, userDetails, { new: true })
-      return updatedUser
-
-    } catch (error) {
-      logger.error(`[UserRepository][updateUser] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.findByIdAndUpdate(userId, userDetails, { new: true })
   }
 
   async deleteUserWithId (userId) {
-    try {
-      const deletedUser = await Users.findByIdAndDelete(userId)
-      return deletedUser
-
-    } catch (error) {
-      logger.error(`[UserRepository][deleteUserWithId] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.findByIdAndDelete(userId)
   }
 
   async getUsersWithHoursThisMonthGreaterThan(hours) {
-    try {
-      const users = await Users.find({ hoursThisMonth: { $gt: hours } })
-      return users
-
-    } catch (error) {
-      logger.error(`[UserRepository][getUsersWithHoursThisMonthGreaterThan] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ hoursThisMonth: { $gt: hours } })
   }
 
   async getUsersWithHoursThisMonthLessThan(hours) {
-    try {
-      const users = await Users.find({ hoursThisMonth: { $lt: hours } })
-      return users
-      
-    } catch (error) {
-      logger.error(`[UserRepository][getUsersWithHoursThisMonthLessThan] :: ${error.message}`, error)
-      throw error
-    }
+    return Users.find({ hoursThisMonth: { $lt: hours } })
   }
 }
 
