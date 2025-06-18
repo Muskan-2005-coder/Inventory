@@ -30,7 +30,7 @@
  * GET    /api/v1/deliveries/:id      Get delivery status
  * PUT    /api/v1/deliveries/:id      Update delivery status/location
  * POST   /api/v1/deliveries/assign   Assign delivery to personnel
- * POST   /api/v1/deliveries/eta      Get predicted ETA
+ * GET    /api/v1/deliveries/eta      Get predicted ETA
  * 
  * 
  * Wage & Workforce Management
