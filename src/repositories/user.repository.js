@@ -2,7 +2,7 @@
  * In this Layer we write only the Operations to perform on DB
  * NOT the LOGIC behind our main Business -> So it's like our CRUD Manager for DB
  */
-const { Users } = require("../models");
+const { Users } = require("../models")
 
 class UserRepository {
   async registerUser (userDetails) {
@@ -11,8 +11,8 @@ class UserRepository {
       return user
 
     } catch (error) {
-      logger.error(`[UserRepository][registerUser] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[UserRepository][registerUser] :: ${error.message}`, error)
+      throw error
     }
   }
   
@@ -22,8 +22,8 @@ class UserRepository {
       return user
 
     } catch (error) {
-      logger.error(`[UserRepository][getUserByEmail] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[UserRepository][getUserByEmail] :: ${error.message}`, error)
+      throw error
     }
   }
   
@@ -33,8 +33,8 @@ class UserRepository {
       return user
       
     } catch (error) {
-      logger.error(`[UserRepository][getUserByUsername] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[UserRepository][getUserByUsername] :: ${error.message}`, error)
+      throw error
     }
   }
   
@@ -44,8 +44,8 @@ class UserRepository {
       return users
       
     } catch (error) {
-      logger.error(`[UserRepository][getAllUsers] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[UserRepository][getAllUsers] :: ${error.message}`, error)
+      throw error
     }
   }
 
@@ -55,8 +55,8 @@ class UserRepository {
       return updatedUser
 
     } catch (error) {
-      logger.error(`[UserRepository][updateUser] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[UserRepository][updateUser] :: ${error.message}`, error)
+      throw error
     }
   }
 
@@ -66,8 +66,8 @@ class UserRepository {
       return deletedUser
 
     } catch (error) {
-      logger.error(`[UserRepository][deleteUserWithId] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[UserRepository][deleteUserWithId] :: ${error.message}`, error)
+      throw error
     }
   }
 }
