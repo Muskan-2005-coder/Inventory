@@ -3,6 +3,7 @@
  * NOT the LOGIC behind our main Business -> So it's like our CRUD Manager for DB
  */
 const { Users } = require("../models")
+const logger = require('winston').createLogger()
 
 class UserRepository {
   async registerUser (userDetails) {
@@ -38,6 +39,72 @@ class UserRepository {
     }
   }
   
+  async getUserById(userId) {
+    try {
+      const user = await Users.findById(userId).select('+password +email')
+      return user
+
+    } catch (error) {
+      logger.error(`[UserRepository][getUserById] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getUsersByRole(role) {
+    try {
+      const users = await Users.find({ role })
+      return users
+      
+    } catch (error) {
+      logger.error(`[UserRepository][getUsersByRole] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getUsersByShift(shift) {
+    try {
+      const users = await Users.find({ shift })
+      return users
+
+    } catch (error) {
+      logger.error(`[UserRepository][getUsersByShift] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getActiveUsers() {
+    try {
+      const users = await Users.find({ active: true })
+      return users
+
+    } catch (error) {
+      logger.error(`[UserRepository][getActiveUsers] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getInactiveUsers() {
+    try {
+      const users = await Users.find({ active: false })
+      return users
+
+    } catch (error) {
+      logger.error(`[UserRepository][getInactiveUsers] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getUsersWithExtraShift() {
+    try {
+      const users = await Users.find({ extraShift: true })
+      return users
+
+    } catch (error) {
+      logger.error(`[UserRepository][getUsersWithExtraShift] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
   async getAllUsers () {
     try {
       const users = await Users.find()
@@ -67,6 +134,28 @@ class UserRepository {
 
     } catch (error) {
       logger.error(`[UserRepository][deleteUserWithId] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getUsersWithHoursThisMonthGreaterThan(hours) {
+    try {
+      const users = await Users.find({ hoursThisMonth: { $gt: hours } })
+      return users
+
+    } catch (error) {
+      logger.error(`[UserRepository][getUsersWithHoursThisMonthGreaterThan] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getUsersWithHoursThisMonthLessThan(hours) {
+    try {
+      const users = await Users.find({ hoursThisMonth: { $lt: hours } })
+      return users
+      
+    } catch (error) {
+      logger.error(`[UserRepository][getUsersWithHoursThisMonthLessThan] :: ${error.message}`, error)
       throw error
     }
   }
