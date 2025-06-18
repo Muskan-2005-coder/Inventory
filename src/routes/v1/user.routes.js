@@ -11,13 +11,15 @@
 */
 
 const express = require('express')
+
+const { userController } = require('../../controllers')
 const userRouter = express.Router()
 
-userRouter.post('/register')
-userRouter.post('/login')
-userRouter.get('/me')
-userRouter.get('/')
-userRouter.put('/:id')
-userRouter.delete('/:id')
+userRouter.post('/register', userController.register)
+userRouter.post('/login', userController.login)
+userRouter.get('/me', userController.getUser)
+userRouter.get('/', userController.getAllUsers)
+userRouter.put('/:id', userController.updateProfile)
+userRouter.delete('/:id', userController.deleteProfile)
 
 module.exports = userRouter

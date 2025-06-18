@@ -9,11 +9,12 @@
 
 const express = require('express')
 
+const { alertController } = require('../../controllers')
 const alertRouter = express.Router()
 
-alertRouter.get('/')
-alertRouter.post('/trigger')
-alertRouter.post('/send')
+alertRouter.get('/', alertController.getAllActiveAlerts)
+alertRouter.post('/trigger', alertController.triggerAlert)
+alertRouter.post('/send', alertController.sendAlert)
 
 
 module.exports = alertRouter

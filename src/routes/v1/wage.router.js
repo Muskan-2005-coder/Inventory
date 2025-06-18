@@ -10,11 +10,12 @@
 
 const express = require('express')
 
+const { wageController } = require('../../controllers')
 const wageRouter = express.Router()
 
-wageRouter.get('/')
-wageRouter.post('/calculate')
-wageRouter.get('/overworked')
-wageRouter.put('/:userId')
+wageRouter.get('/', wageController.getWages)
+wageRouter.post('/calculate', wageController.calculateWage)
+wageRouter.get('/overworked', wageController.getOverworked)
+wageRouter.put('/:userId', wageController.updateWage)
 
 module.exports = wageRouter

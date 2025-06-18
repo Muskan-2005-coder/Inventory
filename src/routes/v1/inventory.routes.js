@@ -14,15 +14,16 @@
 
 const express = require('express')
 
+const { inventoryController } = require('../../controllers')
 const inventoryRouter = express.Router()
 
-inventoryRouter.get('/')
-inventoryRouter.post('/')
-inventoryRouter.get('/:id')
-inventoryRouter.put('/:id')
-inventoryRouter.delete('/:id')
-inventoryRouter.get('/low')
-inventoryRouter.post('/restock')
-inventoryRouter.get('/heatmap')
+inventoryRouter.get('/', inventoryController.getAllInventory)
+inventoryRouter.post('/', inventoryController.addNewItem)
+inventoryRouter.get('/:id', inventoryController.getItem)
+inventoryRouter.put('/:id', inventoryController.updateItem)
+inventoryRouter.delete('/:id', inventoryController.deleteItem)
+inventoryRouter.get('/low', inventoryController.getLowStockItems)
+inventoryRouter.post('/restock', inventoryController.getRestockSuggestion)
+inventoryRouter.get('/heatmap', inventoryController.getHeatmap)
 
 module.exports = inventoryRouter
