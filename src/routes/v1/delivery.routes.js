@@ -19,6 +19,6 @@ deliveryRouter.post('/')
 deliveryRouter.get('/:id')
 deliveryRouter.put('/:id')
 deliveryRouter.post('/assign')
-deliveryRouter.post('/eta')
+deliveryRouter.get('/eta')
 
 module.exports = deliveryRouter
