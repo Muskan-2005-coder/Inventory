@@ -66,7 +66,7 @@ class UserRepository {
   }
 
   async updateUser (userId, userDetails) {
-    return Users.findByIdAndUpdate(userId, userDetails, { new: true })
+    return Users.findByIdAndUpdate(userId, userDetails, { new: true }).select('+email')
   }
 
   async deleteUserWithId (userId) {

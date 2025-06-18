@@ -16,7 +16,6 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-  console.log(req.userData)
   const { user, token } = await userService.login(req.userData)
 
   res.cookie('token', token, cookieOptions)
@@ -25,19 +24,25 @@ const login = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-  res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
-}
-const getAllUsers = async(req, res) => {
-  res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
+  const user = await userService.getUser({ userId: req.userId })
+  res.status(StatusCodes.OK).json({ message: "Data Fetched successfully", user })
 }
 
-const updateProfile = async(req, res) => {
-  res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
+const getAllUsers = async (req, res) => {
+  const users = await userService.getAllUsers()
+  res.status(StatusCodes.OK).json({ message: "All Users Fetched Successfully", total: users.length, data: users })
+}
+
+const updateProfile = async (req, res) => {
+  const updatedUser = await userService.updateProfile(req.userId, req.userData)
+  res.status(StatusCodes.OK).json({ message: "Profile Updated Successfully!", updatedUser })
 }
 
 const deleteProfile = async(req, res) => {
   res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
 }
+
+// All admin privileged Routes will start with AD (will add later)
 
 module.exports = {
   register,

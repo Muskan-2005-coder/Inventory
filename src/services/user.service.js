@@ -35,10 +35,20 @@ class UserService {
   getUser = async (userDetails) => {
     const user = await this.UserRepository.getUser(userDetails)
     if (!user) throw new NotFoundError('User not found')
-      
+
     user.password = undefined
     return user
   }
+
+  getAllUsers = async () => {
+    return await this.UserRepository.getAllUsers()
+  }
+
+  updateProfile = async (userId, updateData) => {
+    return await this.UserRepository.updateUser(userId, updateData)
+  }
+
+
 }
 
 module.exports = UserService
