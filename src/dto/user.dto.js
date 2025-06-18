@@ -4,7 +4,7 @@ const createUserSchema = z.object({
   name: z.string().min(3).max(20),
   email: z.string().email().transform(val => val.toLowerCase()),
   password: z.string().min(4).max(10),
-  role: z.string().enum(['admin', 'staff', 'supplier', 'driver'])
+  role: z.enum(['admin', 'staff', 'supplier', 'driver']).default('staff')
 }).strict()
 
 const updateUserSchema = z.object({
@@ -19,5 +19,6 @@ const updateUserSchema = z.object({
 })
 
 module.exports = {
-  createUserSchema
+  createUserSchema,
+  updateUserSchema
 }

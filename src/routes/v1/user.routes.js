@@ -13,9 +13,12 @@
 const express = require('express')
 
 const { userController } = require('../../controllers')
+const validator = require('../../validators/zod.validator')
+const { createUserSchema } = require('../../dto/user.dto')
+
 const userRouter = express.Router()
 
-userRouter.post('/register', userController.register)
+userRouter.post('/register', validator(createUserSchema), userController.register)
 userRouter.post('/login', userController.login)
 userRouter.get('/me', userController.getUser)
 userRouter.get('/', userController.getAllUsers)

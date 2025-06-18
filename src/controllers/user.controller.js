@@ -1,7 +1,12 @@
 const { StatusCodes } = require("http-status-codes")
+const { UserService } = require("../services")
+
+const userService = new UserService("temp")
 
 const register = async(req, res) => {
-  res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
+  // await userService.register()
+  console.log("reached")
+  res.status(StatusCodes.OK).json({ message: "Registered"})
 }
 
 const login = async(req, res) => {

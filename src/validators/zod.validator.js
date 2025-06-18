@@ -8,7 +8,7 @@ const validator = (schema) => (req, res, next) => {
 
   } catch (error) {
     logger.error('Invalid Request Params Received', error)
-    throw new ClientError.BadRequestError(`[Validator] :: ${error.message}`, error)
+    throw new ClientError.BadRequestError('Invalid request body.', error)
   }
 }
 
