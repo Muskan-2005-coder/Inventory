@@ -6,8 +6,8 @@ const UserRepository = require("../repositories/user.repository")
 const userService = new UserService(new UserRepository)
 
 const register = async(req, res) => {
-  await userService.register(req.body)
-  res.status(StatusCodes.OK).json({ message: "Registered" })
+  const data = await userService.register(req.body)
+  res.status(StatusCodes.OK).json({ message: data })
 }
 
 const login = async(req, res) => {

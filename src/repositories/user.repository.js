@@ -28,17 +28,6 @@ class UserRepository {
     }
   }
   
-  async getUserByUsername (username) {
-    try {
-      const user = await Users.findOne({ username }).select('+password +email')
-      return user
-      
-    } catch (error) {
-      logger.error(`[UserRepository][getUserByUsername] :: ${error.message}`, error)
-      throw error
-    }
-  }
-  
   async getUserById(userId) {
     try {
       const user = await Users.findById(userId).select('+password +email')

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 class UserService {
   constructor(UserRepository) {
@@ -8,8 +9,9 @@ class UserService {
   register = async (userDetails) => {
     userDetails.password = await bcrypt.hash(userDetails.password, 10)
     const user = await this.UserRepository.registerUser(userDetails)
-    console.log(user)
-    return user
+
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY)
+    return { user, token }
   }
 }
 

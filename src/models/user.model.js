@@ -3,7 +3,6 @@
  *
  * name            : string     // Full name of user
  * email           : string     // Unique identifier for login
- * username        : string     // Username for every Employee
  * password        : string     // Hashed password
  * role            : string     // 'admin', 'staff', 'supplier', 'driver'
  * phone           : string     // Optional contact info
@@ -33,11 +32,6 @@ const userSchema = new mongoose.Schema({
     select: false
   },
 
-  username: {
-    type: String,
-    unique: true
-  },
-
   password: {
     type: String,
     required: true,
@@ -51,8 +45,7 @@ const userSchema = new mongoose.Schema({
   },
 
   phone: {
-    type: String,
-    unique: true
+    type: String
   },
 
   shift: {
