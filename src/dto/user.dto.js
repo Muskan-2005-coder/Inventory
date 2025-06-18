@@ -53,9 +53,14 @@ const adminUserUpdateSchema = z.object({
   path: []
 })
 
+const passwordSchema = z.object({
+  password: z.string().min(4).max(15)
+}).strict()
+
 module.exports = {
   createUserSchema,
   updateUserSchema,
   loginUserSchema,
-  adminUserUpdateSchema
+  adminUserUpdateSchema,
+  passwordSchema
 }

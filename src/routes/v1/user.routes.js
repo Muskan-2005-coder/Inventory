@@ -22,10 +22,13 @@ const userRouter = express.Router()
 
 userRouter.post('/register', validator(userValidators.createUserSchema), userController.register)
 userRouter.post('/login', validator(userValidators.loginUserSchema), userController.login)
+userRouter.post('/logout', authMiddleware, userController.logout)
 userRouter.get('/me', authMiddleware, userController.getUser)
 userRouter.get('/', userController.getAllUsers)
 userRouter.put('/', authMiddleware, validator(userValidators.updateUserSchema), userController.updateProfile)
-userRouter.put('/:id', userController.updateProfile)  // ADMIN
-userRouter.delete('/:id', userController.deleteProfile) // ADMIN
+userRouter.put('/update_password', authMiddleware, validator(userValidators.passwordSchema), userController.updatePassword)
+// userRouter.put('/', authMiddleware, validator(userValidators.updateUserSchema), userController.updateProfile)
+// userRouter.put('/:id', userController.ADupdateProfile)  // ADMIN
+userRouter.delete('/:id', userController.ADdeleteProfile) // ADMIN
 
 module.exports = userRouter

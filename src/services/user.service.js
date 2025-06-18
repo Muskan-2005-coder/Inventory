@@ -48,6 +48,10 @@ class UserService {
     return await this.UserRepository.updateUser(userId, updateData)
   }
 
+  updatePassword = async (userId, updateData) => {
+    updateData.password = await bcrypt.hash(updateData.password, 10)
+    return await this.UserRepository.updateUser(userId, updateData)
+  }
 
 }
 

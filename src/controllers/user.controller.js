@@ -38,7 +38,18 @@ const updateProfile = async (req, res) => {
   res.status(StatusCodes.OK).json({ message: "Profile Updated Successfully!", updatedUser })
 }
 
-const deleteProfile = async(req, res) => {
+const updatePassword = async (req, res) => {
+  const user = userService.updatePassword(req.userId, req.userData)
+  res.status(StatusCodes.OK).json({ message: "Password Successfully Updated", user})
+}
+
+const logout = async (req, res) => {
+  res.clearCookie('token', cookieOptions)
+  res.setHeader('Authorization', '')
+  res.status(StatusCodes.OK).json({ message: "Logged out successfully" })
+}
+
+const ADdeleteProfile = async (req, res) => {
   res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
 }
 
@@ -50,5 +61,7 @@ module.exports = {
   getUser,
   getAllUsers,
   updateProfile,
-  deleteProfile
+  ADdeleteProfile,
+  updatePassword,
+  logout
 }
