@@ -6,6 +6,7 @@ class WagesRepository {
     try {
       const wage = await Wage.create(wageDetails)
       return wage
+
     } catch (error) {
       logger.error(`[WagesRepository][createWage] :: ${error.message}`, error)
       throw error
@@ -16,6 +17,7 @@ class WagesRepository {
     try {
       const wage = await Wage.findById(wageId)
       return wage
+
     } catch (error) {
       logger.error(`[WagesRepository][getWageById] :: ${error.message}`, error)
       throw error
@@ -26,6 +28,7 @@ class WagesRepository {
     try {
       const wages = await Wage.find({ userId })
       return wages
+
     } catch (error) {
       logger.error(`[WagesRepository][getWagesByUserId] :: ${error.message}`, error)
       throw error
@@ -36,6 +39,7 @@ class WagesRepository {
     try {
       const updatedWage = await Wage.findByIdAndUpdate(wageId, wageDetails, { new: true })
       return updatedWage
+
     } catch (error) {
       logger.error(`[WagesRepository][updateWage] :: ${error.message}`, error)
       throw error
@@ -46,6 +50,7 @@ class WagesRepository {
     try {
       const deletedWage = await Wage.findByIdAndDelete(wageId)
       return deletedWage
+      
     } catch (error) {
       logger.error(`[WagesRepository][deleteWage] :: ${error.message}`, error)
       throw error

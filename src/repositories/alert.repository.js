@@ -6,6 +6,7 @@ class AlertRepository {
     try {
       const alert = await Alert.create(alertDetails)
       return alert
+      
     } catch (error) {
       logger.error(`[AlertRepository][createAlert] :: ${error.message}`, error)
       throw error
@@ -16,6 +17,7 @@ class AlertRepository {
     try {
       const alert = await Alert.findById(alertId)
       return alert
+
     } catch (error) {
       logger.error(`[AlertRepository][getAlertById] :: ${error.message}`, error)
       throw error
@@ -26,6 +28,7 @@ class AlertRepository {
     try {
       const alerts = await Alert.find()
       return alerts
+
     } catch (error) {
       logger.error(`[AlertRepository][getAllAlerts] :: ${error.message}`, error)
       throw error
@@ -36,6 +39,7 @@ class AlertRepository {
     try {
       const updatedAlert = await Alert.findByIdAndUpdate(alertId, alertDetails, { new: true })
       return updatedAlert
+
     } catch (error) {
       logger.error(`[AlertRepository][updateAlert] :: ${error.message}`, error)
       throw error
@@ -46,6 +50,7 @@ class AlertRepository {
     try {
       const deletedAlert = await Alert.findByIdAndDelete(alertId)
       return deletedAlert
+
     } catch (error) {
       logger.error(`[AlertRepository][deleteAlert] :: ${error.message}`, error)
       throw error
