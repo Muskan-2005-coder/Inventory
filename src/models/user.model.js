@@ -50,10 +50,6 @@ const userSchema = new mongoose.Schema({
     default: 'staff'
   },
 
-  phone: {
-    type: String
-  },
-
   shift: {
     type: String,
     enum: ['morning', 'evening', 'night'],
