@@ -8,15 +8,17 @@ const logger = require("../utils/logger")
 const userService = new UserService(new UserRepository)
 
 const register = async (req, res) => {
-  const { user, token } = await userService.register(req.body)
+  const { user, token } = await userService.register(req.userData)
+
   res.cookie('jwt_token', token, cookieOptions)
   res.status(StatusCodes.CREATED).json({ user })
 }
 
 const login = async (req, res) => {
-  console.log(req.body)
-  const { user, token } = await userService.login(req.body.email, req.body.password)
-  // res.cookie('jwt_token', token, cookieOptions)
+  console.log(req.userData)
+  const { user, token } = await userService.login(req.userData)
+
+  res.cookie('jwt_token', token, cookieOptions)
   res.status(StatusCodes.OK).json({ message: "User Login Successful", user})
 }
 

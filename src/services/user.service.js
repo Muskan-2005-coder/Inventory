@@ -25,21 +25,28 @@ class UserService {
     }
   }
 
-  login = async (email, password) => {
+  login = async (userDetails) => {
     try {
-      const user = await this.UserRepository.getUserByEmail(email)
-      const isPassword = await bcrypt.compare(password, user.password)
+      let user = null
+      if(userDetails.email) user = await this.UserRepository.getUserByEmail(userDetails.email)
+      else user = await this.UserRepository.getUserByPhone(userDetails.phone)
+      if(!user) {
+        throw new NotFoundError('Incorrect Credentials')
+      }
+    
+      const isPassword = await bcrypt.compare(userDetails.password, user.password)
+      console.log(isPassword)
       if(!isPassword){
         throw new NotFoundError('Incorrect Credentials')
       }
-
+    
       const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, jwtOptions)
       user.password = undefined
       console.log(user, token)
       return { user, token }
 
     } catch (error) {
-      
+      throw error
     }
   }
 }
