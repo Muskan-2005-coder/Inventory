@@ -127,7 +127,7 @@ class InventoryRepository {
     try {
       const inventories = await Inventory.find({ restockRecommended: true })
       return inventories
-      
+
     } catch (error) {
       logger.error(`[InventoryRepository][getInventoriesNeedingRestock] :: ${error.message}`, error)
       throw error
@@ -135,4 +135,4 @@ class InventoryRepository {
   }
 }
 
-module.exports = new InventoryRepository()
+module.exports = InventoryRepository
