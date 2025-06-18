@@ -35,7 +35,6 @@ const userSchema = new mongoose.Schema({
 
   username: {
     type: String,
-    required: true,
     unique: true
   },
 
@@ -53,8 +52,7 @@ const userSchema = new mongoose.Schema({
 
   phone: {
     type: String,
-    unique: true,
-    required: true
+    unique: true
   },
 
   shift: {
