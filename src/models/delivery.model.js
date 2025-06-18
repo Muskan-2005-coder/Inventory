@@ -60,7 +60,7 @@ const deliverySchema = new mongoose.Schema({
   },
 
   transportMode: {
-    type: string,
+    type: String,
     enum: ['land', 'air', 'ship'],
     default: 'land'
   },

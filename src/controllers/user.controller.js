@@ -1,12 +1,13 @@
 const { StatusCodes } = require("http-status-codes")
-const { UserService } = require("../services")
 
-const userService = new UserService("temp")
+const { UserService } = require("../services")
+const UserRepository = require("../repositories/user.repository")
+
+const userService = new UserService(new UserRepository)
 
 const register = async(req, res) => {
-  // await userService.register()
-  console.log("reached")
-  res.status(StatusCodes.OK).json({ message: "Registered"})
+  await userService.register(req.body)
+  res.status(StatusCodes.OK).json({ message: "Registered" })
 }
 
 const login = async(req, res) => {

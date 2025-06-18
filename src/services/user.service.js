@@ -8,6 +8,7 @@ class UserService {
   register = async (userDetails) => {
     userDetails.password = await bcrypt.hash(userDetails.password, 10)
     const user = await this.UserRepository.registerUser(userDetails)
+    console.log(user)
     return user
   }
 }

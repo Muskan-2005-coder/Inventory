@@ -97,7 +97,7 @@ const inventorySchema = new mongoose.Schema({
   },
 
   thresholdLimit: {
-    type: number
+    type: Number
   },
 
   shelfLifeDays: {
