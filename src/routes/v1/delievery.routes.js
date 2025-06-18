@@ -10,8 +10,6 @@
  * 
 */ 
 
-
-
 const express = require('express')
 
 const deliveryRouter = express.Router()

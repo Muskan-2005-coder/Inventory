@@ -8,7 +8,6 @@
  * 
 */
 
-
 const express = require('express')
 
 const wageRouter = express.Router()

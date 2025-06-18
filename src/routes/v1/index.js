@@ -48,14 +48,12 @@
  * POST   /api/v1/alerts/send         Send alert to subscribed users
  * 
  * 
- * Admin & Misc
+ * Admin & Misc -> unsure of now..
  * 
  * GET    /api/v1/admin/metrics       Return analytics/reporting data
  * GET    /api/v1/admin/roles         View all user roles (staff, supplier)
  * PUT    /api/v1/admin/layout        Update warehouse layout config
  */
-
-
 
 const express = require('express')
 
