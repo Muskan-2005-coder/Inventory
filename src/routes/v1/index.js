@@ -58,9 +58,17 @@
 const express = require('express')
 
 const userRouter = require('./user.routes')
+const inventoryRouter = require('./inventory.routes')
+const deliveryRouter = require('./delivery.routes')
+const wageRouter = require('./wage.router')
+const alertRouter = require('./alert.router')
 
 const v1Router = express.Router()
 
 v1Router.use('/users', userRouter)
+v1Router.use('/inventory', inventoryRouter)
+v1Router.use('/deliveries', deliveryRouter)
+v1Router.use('/wages', wageRouter)
+v1Router.use('/alerts', alertRouter)
 
 module.exports = v1Router
