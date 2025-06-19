@@ -66,6 +66,7 @@ const transportationRouter = require('./transportation.routes')
 const wageRouter = require('./wage.router')
 const alertRouter = require('./alert.router')
 const productRouter = require('./product.routes')
+const storageRouter = require('./storage.router')
 
 const v1Router = express.Router()
 
@@ -75,5 +76,6 @@ v1Router.use('/inventory', inventoryRouter)
 v1Router.use('/transports', transportationRouter)
 v1Router.use('/wages', wageRouter)
 v1Router.use('/alerts', alertRouter)
+v1Router.use('/storages', storageRouter)
 
 module.exports = v1Router

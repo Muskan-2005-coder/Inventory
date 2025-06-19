@@ -4,5 +4,6 @@ module.exports = {
   InventoryRepository : require("./inventory.repository"),
   UserRepository : require("./user.repository"),
   WagesRepository : require("./wage.repository"),
-  ProductRepository: require('./product.repository')
+  ProductRepository: require('./product.repository'),
+  StorageRepository:  require("./storage.repository")
 }
