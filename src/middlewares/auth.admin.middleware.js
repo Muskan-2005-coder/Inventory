@@ -15,7 +15,7 @@ const adminMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET_KEY)
-    if(req.role != 'admin') throw new UnauthorizedError('Only Admin can Do this Operation!')
+    if(decoded.role != 'admin') throw new UnauthorizedError('Only Admin can Do this Operation!')
     req.userId = decoded.userId
     next()
 
