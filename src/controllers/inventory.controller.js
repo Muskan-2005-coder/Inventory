@@ -64,6 +64,13 @@ const getInventoryCapacityUtilization = async (req, res) => {
     logger.info(`[${CONTEXT}] Inventory capacity utilization fetched successfully.`)
 }
 
+const getAllProductsInInventory = async (req, res) => {
+    logger.info(`[${CONTEXT}] Getting All products for inventory ${req.params.id}`)
+    const products = await inventoryService.getAllProductsInInventory(req.params.id)
+    res.status(StatusCodes.OK).json(ApiResponse.success('All Products in Inventory fetched successfully', products))
+    logger.info(`[${CONTEXT}] All Products from Inventory fetched successfully.`)
+}
+
 module.exports = {
   createInventory,
   getInventory,
@@ -72,5 +79,6 @@ module.exports = {
   deleteInventory,
   addProductToInventory,
   removeProductFromInventory,
-  getInventoryCapacityUtilization
+  getInventoryCapacityUtilization,
+  getAllProductsInInventory
 }

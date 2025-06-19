@@ -97,6 +97,14 @@ class InventoryService {
     logger.info(`[${CONTEXT}] Capacity utilization for inventory ${inventoryId} is ${result.capacityUtilization}`)
     return result
   }
+
+  async getAllProductsInInventory(inventoryId) {
+    logger.info(`[${CONTEXT}] Fetching all Products in Inventory: ${inventoryId}`)
+    const products = await this.InventoryRepository.getAllProductsInInventory(inventoryId)
+    
+    logger.info(`[${CONTEXT}] Fetched inventory successfully: ${inventoryId}`)
+    return { total: products.length, products }
+  }
 }
 
 module.exports = InventoryService

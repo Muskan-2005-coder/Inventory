@@ -160,6 +160,18 @@ class InventoryRepository {
       throw error
     }
   }
+
+  async getAllProductsInInventory(inventoryId) {
+     try {
+      logger.info(`[${CONTEXT}] Getting All products for inventory: ${inventoryId}`)
+      const inventory = await Inventory.findById(inventoryId).populate('products')
+      return inventory.products
+
+    } catch (error) {
+      logger.error(`[${CONTEXT}][getAllProductsInInventory] :: ${error.message}`, error)
+      throw error
+    }
+  }
 }
 
 module.exports = InventoryRepository
