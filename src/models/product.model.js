@@ -44,7 +44,6 @@ const productSchema = new mongoose.Schema({
 
   thresholdLimit: {
     type: Number,
-    required: true,
     default: 0
   },
 
@@ -74,19 +73,16 @@ const productSchema = new mongoose.Schema({
   supplierId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
   },
 
   supplierLocation: {
     type: {
       type: String,
       enum: ['Point'],
-      required: true,
       default: 'Point'
     },
     coordinates: {
-      type: [Number],
-      required: true
+      type: [Number]
     }
   }
 
