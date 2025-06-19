@@ -44,7 +44,7 @@ const productCategories = [
   "footwear",
   "jewelryAccessories",
   "beautyCosmetics"
-];
+]
 
 const storageLocations = [
   "A1",
@@ -61,9 +61,9 @@ const storageLocations = [
   "FzO1",
   "FzO2",
   "notAllotted"
-];
+]
 
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const inventorySchema = new mongoose.Schema({
   productName: {
@@ -97,7 +97,7 @@ const inventorySchema = new mongoose.Schema({
   },
 
   thresholdLimit: {
-    type: number
+    type: Number
   },
 
   shelfLifeDays: {

@@ -20,9 +20,9 @@ const alertTypes = [
   "unauthorizedAccess",
   "stockExpired",
   "systemError"
-];
+]
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const alertSchema = new mongoose.Schema({
   type: {
@@ -52,7 +52,7 @@ const alertSchema = new mongoose.Schema({
     required: true
   }
 
-}, { timestamps: true });
+}, { timestamps: true })
 
-const alertModel = mongoose.model('alert', alertSchema);
-module.exports = alertModel;
+const alertModel = mongoose.model('alert', alertSchema)
+module.exports = alertModel

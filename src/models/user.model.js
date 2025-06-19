@@ -3,7 +3,6 @@
  *
  * name            : string     // Full name of user
  * email           : string     // Unique identifier for login
- * username        : string     // Username for every Employee
  * password        : string     // Hashed password
  * role            : string     // 'admin', 'staff', 'supplier', 'driver'
  * phone           : string     // Optional contact info
@@ -18,7 +17,7 @@
  * // ! -> we will be using user._id of mongoDB as our EmployeeId (empId)
  */
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -28,14 +27,15 @@ const userSchema = new mongoose.Schema({
 
   email: {
     type: String,
-    required: true,
     unique: true,
-    select: false
+    select: false,
+    sparse: true
   },
 
-  username: {
+  phone: {
     type: String,
-    unique: true
+    unique: true,
+    sparse: true
   },
 
   password: {
@@ -48,11 +48,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['admin', 'staff', 'supplier', 'driver'],
     default: 'staff'
-  },
-
-  phone: {
-    type: String,
-    unique: true
   },
 
   shift: {

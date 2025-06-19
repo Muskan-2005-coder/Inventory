@@ -10,7 +10,7 @@
  * transportMode    : string     // Enum: "truck", "bike", "drone"
  */
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const deliverySchema = new mongoose.Schema({
   packageId: {
@@ -60,7 +60,7 @@ const deliverySchema = new mongoose.Schema({
   },
 
   transportMode: {
-    type: string,
+    type: String,
     enum: ['land', 'air', 'ship'],
     default: 'land'
   },

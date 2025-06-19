@@ -1,5 +1,5 @@
 class BaseError extends Error {
-  constructor (name, statusCode, description) {
+  constructor (name, statusCode, description, meta) {
     super(description)
     this.name = name
     this.statusCode = statusCode
