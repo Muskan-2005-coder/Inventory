@@ -6,6 +6,10 @@ const productSchema = new mongoose.Schema({
     required: true
   },
 
+  productCategory: {
+    type: String,
+  },
+
   sku: {
     type: String
   },
@@ -27,8 +31,7 @@ const productSchema = new mongoose.Schema({
   },
 
   category: {
-    type: String,
-    required: true
+    type: String
   },
 
   description: {
@@ -54,6 +57,14 @@ const productSchema = new mongoose.Schema({
   shelfLifeDays: {
     type: Number,
     default: 0
+  },
+
+  mfgDate: {
+    type: Date
+  },
+
+  expiryDate: {
+    type: Date
   },
 
   supplierId: {

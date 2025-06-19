@@ -68,6 +68,17 @@ class DeliveryRepository {
     }
   }
 
+  async getDeliveriesByOrigin(startLocation) {
+    try {
+      const deliveries = await Delivery.find({ startLocation })
+      return deliveries
+
+    } catch (error) {
+      logger.error(`[DeliveryRepository][getDeliveriesByDestination] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
   async getDeliveriesByCurrentLocation(currentLocation) {
     try {
       const deliveries = await Delivery.find({ currentLocation })
