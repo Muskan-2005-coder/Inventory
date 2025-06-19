@@ -3,12 +3,15 @@
 /**
  * User Management
  * 
- * POST   /api/v1/auth/register       Register a new user
- * POST   /api/v1/auth/login          Login & get JWT token
- * GET    /api/v1/users/me            Get current user info
- * GET    /api/v1/users/              (Admin) List all users
- * PUT    /api/v1/users/:id           Update user role/shift
- * DELETE /api/v1/users/:id           Delete a user
+ * POST   /api/v1/users/register         Register a new user
+ * POST   /api/v1/users/login            Login & get JWT token
+ * POST   /api/v1/users/logout           Logout a user
+ * GET    /api/v1/users/me               Get current user info
+ * GET    /api/v1/users/                 List all users
+ * PUT    /api/v1/users/                 Update user's profile
+ * PUT    /api/v1/users/update_password  Update password
+ * PUT    /api/v1/users/:id              (Admin) Update user role/shift
+ * DELETE /api/v1/users/:id              (Admin) Delete a user
  * 
  * 
  * Inventory Management

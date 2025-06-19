@@ -3,9 +3,11 @@ const { StatusCodes } = require('http-status-codes')
 const logger = require('../utils/logger');
 const { BaseError } = require('../errors');
 
+const CONTEXT = 'ErrorMiddleware';
+
 const errorMw = (err, req, res, next) => {
 
-  logger.error(`[ErrorHandler] :: ${err.name}: ${err.message}`, {
+  logger.error(`[${CONTEXT}] ${err.name}: ${err.message}`, {
     stack: err.stack,
     request: {
       method: req.method,
