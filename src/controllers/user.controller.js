@@ -1,14 +1,14 @@
 const { StatusCodes } = require("http-status-codes")
 
 const { UserService } = require("../services")
-const UserRepository = require("../repositories/user.repository")
+const { WagesRepository, UserRepository } = require("../repositories")
 const { cookieOptions } = require("../config/auth.config")
 const logger = require("../utils/logger")
 const ApiResponse = require("../dto/response.dto")
 
 const CONTEXT = 'UserController'
 
-const userService = new UserService(new UserRepository)
+const userService = new UserService(new UserRepository, new WagesRepository)
 
 const register = async (req, res) => {
   logger.info(`[${CONTEXT}] Registering new user with data: ${JSON.stringify(req.userData)}`)

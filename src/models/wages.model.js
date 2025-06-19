@@ -25,7 +25,6 @@ const wageSchema = new mongoose.Schema({
 
   hoursWorked: {
     type: Number,
-    required: true,
     default: 0
   },
 

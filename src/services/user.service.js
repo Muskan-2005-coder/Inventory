@@ -15,18 +15,28 @@ const { NotFoundError } = require('../errors/client.error')
 const CONTEXT = 'UserService'
 
 class UserService {
-  constructor(UserRepository) {
-    this.UserRepository = UserRepository
+  constructor(UserRepository, WageRepository) {
+    this.UserRepository = UserRepository,
+    this.WageRepository = WageRepository
   }
 
   register = async (userDetails) => {
-    logger.info(`[${CONTEXT}] Registering user with email: ${userDetails.email}`)
+    logger.info(`[${CONTEXT}] Registering user with details: ${JSON.stringify(userDetails)}`)
     userDetails.password = await bcrypt.hash(userDetails.password, 10)
     const user = await this.UserRepository.registerUser(userDetails)
 
     const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET_KEY, jwtOptions)
     user.password = undefined
     logger.info(`[${CONTEXT}] User registered successfully: ${user._id}`)
+    
+    logger.info(`[${CONTEXT}] Registering Wage Entry for the User: ${user._id}`)
+    const wage = await this.WageRepository.createWage({ userId: user._id })
+    logger.info(`[${CONTEXT}] Wage registered Successfully for: ${user._id}, WageId: ${wage._id}`)
+    
+    logger.info(`[${CONTEXT}] Adding Wage Entry in the User: ${wage._id}`)
+    await this.UserRepository.updateUser(user._id, { wage: wage._id })
+    logger.info(`[${CONTEXT}] Wage Entry Added in the User: ${user._id}`)
+
     return { user, token }
   }
 

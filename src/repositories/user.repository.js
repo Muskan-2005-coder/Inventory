@@ -12,7 +12,7 @@ const CONTEXT = 'UserRepository'
 class UserRepository {
   async registerUser (userDetails) {
     try {
-      logger.info(`[${CONTEXT}] Registering user with email: ${userDetails.email}`)
+      logger.info(`[${CONTEXT}] Registering user with details: ${JSON.stringify(userDetails)}`)
       const user = await Users.create(userDetails)
       logger.info(`[${CONTEXT}] User registered successfully: ${user._id}`)
       return user
@@ -32,7 +32,7 @@ class UserRepository {
 
       const query = { [fieldMap[key]]: userDetails[key] }
       logger.info(`[${CONTEXT}] Fetching user with query: ${JSON.stringify(query)}`)
-      const user = await Users.findOne(query).select('+password +email')
+      const user = await Users.findOne(query).select('+password +email').populate('wage')
       if (user) {
         logger.info(`[${CONTEXT}] Found user: ${user._id}`)
       } else {
