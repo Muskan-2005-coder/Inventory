@@ -22,7 +22,7 @@ const getTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Transportation fetched successfully: ${transportation._id}`);
 };
 
-const getAllDeliveries = async (req, res) => {
+const getAllTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Fetching all deliveries`);
   const deliveries = await transportationService.getAllDeliveries();
   res.status(StatusCodes.OK).json(ApiResponse.success('All deliveries fetched successfully', { length: deliveries.length, deliveries }));
@@ -36,7 +36,7 @@ const updateTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Transportation updated successfully: ${updatedTransportation._id}`);
 };
 
-const deleteTransportation = async (req, res) => {
+const cancelTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Deleting transportation ID: ${req.params.id}`);
   const deletedTransportation = await transportationService.deleteTransportation(req.params.id);
   res.status(StatusCodes.OK).json(ApiResponse.success('Transportation deleted successfully', { transportation: deletedTransportation }));
@@ -79,9 +79,9 @@ const getTransportationStatus = async(req, res) => {
 module.exports = {
   createTransportation,
   getTransportation,
-  getAllDeliveries,
+  getAllTransportation,
   updateTransportation,
-  deleteTransportation,
+  cancelTransportation,
   getDeliveriesByStatus,
   getOverdueDeliveries,
   updateTransportationStatus,
