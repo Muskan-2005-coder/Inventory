@@ -40,14 +40,14 @@ const getUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   logger.info(`[${CONTEXT}] Fetching all users`)
   const users = await userService.getAllUsers()
-  res.status(StatusCodes.OK).json(ApiResponse.success("All Users Fetched Successfully", { total: users.length, users: users }))
+  res.status(StatusCodes.OK).json(ApiResponse.success("All Users Fetched Successfully", { length: users.length, users }))
   logger.info(`[${CONTEXT}] All users fetched successfully. Total: ${users.length}`)
 }
 
 const updateProfile = async (req, res) => {
   logger.info(`[${CONTEXT}] Updating profile for user ID: ${req.userId} with data: ${JSON.stringify(req.userData)}`)
   const updatedUser = await userService.updateProfile(req.userId, req.userData)
-  res.status(StatusCodes.OK).json(ApiResponse.success("Profile Updated Successfully!", { updatedUser }))
+  res.status(StatusCodes.OK).json(ApiResponse.success("Profile Updated Successfully!", { user }))
   logger.info(`[${CONTEXT}] Profile updated successfully for user: ${updatedUser._id}`)
 }
 
@@ -69,7 +69,7 @@ const logout = async (req, res) => {
 const ADdeleteProfile = async (req, res) => {
   logger.info(`[${CONTEXT}] Admin deleting profile for user ID: ${req.params.id}`)
   const user = await userService.ADdeleteProfile(req.params.id)
-  res.status(StatusCodes.OK).json(ApiResponse.success("User Deleted Successfully", { deletedUser: user }))
+  res.status(StatusCodes.OK).json(ApiResponse.success("User Deleted Successfully", { user }))
   logger.info(`[${CONTEXT}] Admin deleted profile successfully for user: ${req.params.id}`)
 }
 
