@@ -74,8 +74,13 @@ const userSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true
+  },
+
+  wage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Wage'
   }
 }, { timestamps: true })
 
-const userModel = mongoose.model('user', userSchema)
+const userModel = mongoose.model('User', userSchema)
 module.exports = userModel

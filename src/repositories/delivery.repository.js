@@ -1,6 +1,8 @@
 const Delivery = require('../models/delivery.model')
 const logger = require('../utils/logger')
 
+const CONTEXT = 'DeliveryRepository'
+
 class DeliveryRepository {
   async createDelivery(deliveryDetails) {
     try {
@@ -8,7 +10,7 @@ class DeliveryRepository {
       return delivery
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][createDelivery] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][createDelivery] :: ${error.message}`, error)
       throw error
     }
   }
@@ -19,7 +21,7 @@ class DeliveryRepository {
       return delivery
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveryById] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveryById] :: ${error.message}`, error)
       throw error
     }
   }
@@ -30,7 +32,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getAllDeliveries] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getAllDeliveries] :: ${error.message}`, error)
       throw error
     }
   }
@@ -41,7 +43,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveryByAssignee] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveryByAssignee] :: ${error.message}`, error)
       throw error
     }
   }
@@ -52,7 +54,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveriesByPackageId] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveriesByPackageId] :: ${error.message}`, error)
       throw error
     }
   }
@@ -63,7 +65,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveriesByDestination] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveriesByDestination] :: ${error.message}`, error)
       throw error
     }
   }
@@ -74,7 +76,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveriesByDestination] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveriesByDestination] :: ${error.message}`, error)
       throw error
     }
   }
@@ -85,7 +87,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveriesByCurrentLocation] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveriesByCurrentLocation] :: ${error.message}`, error)
       throw error
     }
   }
@@ -96,7 +98,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveriesByStatus] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveriesByStatus] :: ${error.message}`, error)
       throw error
     }
   }
@@ -107,7 +109,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getDeliveriesByTransportMode] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getDeliveriesByTransportMode] :: ${error.message}`, error)
       throw error
     }
   }
@@ -121,7 +123,7 @@ class DeliveryRepository {
       return deliveries
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][getOverdueDeliveries] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getOverdueDeliveries] :: ${error.message}`, error)
       throw error
     }
   }
@@ -132,7 +134,7 @@ class DeliveryRepository {
       return updatedDelivery
 
     } catch (error) {
-      logger.error(`[DeliveryRepository][updateDelivery] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][updateDelivery] :: ${error.message}`, error)
       throw error
     }
   }
@@ -143,7 +145,7 @@ class DeliveryRepository {
       return deletedDelivery
       
     } catch (error) {
-      logger.error(`[DeliveryRepository][deleteDelivery] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][deleteDelivery] :: ${error.message}`, error)
       throw error
     }
   }

@@ -21,17 +21,17 @@ class StorageRepository {
 
   async getStorageById(storageId) {
     logger.info(`[${CONTEXT}] Fetching storage by ID: ${storageId}`)
-    return Storage.findById(storageId).populate('products')
+    return await Storage.findById(storageId).populate('products')
   }
 
   async getStorageByLocationId(locationId) {
     logger.info(`[${CONTEXT}] Fetching storage by locationId: ${locationId}`)
-    return Storage.findOne({ locationId }).populate('products')
+    return await Storage.findOne({ locationId }).populate('products')
   }
 
   async getAllStorages() {
     logger.info(`[${CONTEXT}] Fetching all storages`)
-    return Storage.find().populate('products')
+    return await Storage.find().populate('products')
   }
 
   async updateStorage(storageId, storageDetails) {

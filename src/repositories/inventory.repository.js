@@ -21,12 +21,12 @@ class InventoryRepository {
 
   async getInventoryById(inventoryId) {
     logger.info(`[${CONTEXT}] Fetching inventory by ID: ${inventoryId}`)
-    return Inventory.findById(inventoryId).populate('products').populate('storage')
+    return await Inventory.findById(inventoryId).populate('products').populate('storage')
   }
 
   async getAllInventories() {
     logger.info(`[${CONTEXT}] Fetching all inventories`)
-    return Inventory.find().populate('products').populate('storage')
+    return await Inventory.find().populate('products').populate('storage')
   }
 
   async updateInventory(inventoryId, inventoryDetails) {

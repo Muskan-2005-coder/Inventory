@@ -1,6 +1,8 @@
 const Wage = require('../models/wages.model')
 const logger = require('../utils/logger')
 
+const CONTEXT = 'WageRepository'
+
 class WagesRepository {
   async createWage(wageDetails) {
     try {
@@ -8,70 +10,69 @@ class WagesRepository {
       return wage
 
     } catch (error) {
-      logger.error(`[WagesRepository][createWage] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][createWage] :: ${error.message}`, error)
       throw error
     }
   }
 
   async getWageById(wageId) {
     try {
-      const wage = await Wage.findById(wageId)
+      const wage = await Wage.findById(wageId).populate('user')
       return wage
 
     } catch (error) {
-      logger.error(`[WagesRepository][getWageById] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getWageById] :: ${error.message}`, error)
       throw error
     }
   }
 
   async getWagesByUserId(userId) {
     try {
-      const wages = await Wage.find({ userId })
+      const wages = await Wage.find({ userId }).populate('user')
       return wages
 
     } catch (error) {
-      logger.error(`[WagesRepository][getWagesByUserId] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getWagesByUserId] :: ${error.message}`, error)
       throw error
     }
   }
 
   async getWagesByMonth(year, month) {
     try {
-      // Note: month is 1-indexed (1 for Jan, 12 for Dec)
-      const startDate = new Date(year, month - 1, 1);
-      const endDate = new Date(year, month, 1);
+      const startDate = new Date(year, month - 1, 1)
+      const endDate = new Date(year, month, 1)
       const wages = await Wage.find({
         month: {
           $gte: startDate,
           $lt: endDate
         }
-      });
-      return wages;
+      }).populate('user')
+      return wages
 
     } catch (error) {
-      logger.error(`[WagesRepository][getWagesByMonth] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[${CONTEXT}][getWagesByMonth] :: ${error.message}`, error)
+      throw error
     }
   }
 
   async getOverworkedWages() {
     try {
-      const wages = await Wage.find({ overworked: true });
-      return wages;
+      const wages = await Wage.find({ overworked: true })
+      return wages
 
     } catch (error) {
-      logger.error(`[WagesRepository][getOverworkedWages] :: ${error.message}`, error);
-      throw error;
+      logger.error(`[${CONTEXT}][getOverworkedWages] :: ${error.message}`, error)
+      throw error
     }
   }
 
   async updateWage(wageId, wageDetails) {
     try {
-      const updatedWage = await Wage.findByIdAndUpdate(wageId, wageDetails, { new: true })
+      const updatedWage = await Wage.findByIdAndUpdate(wageId, wageDetails, { new: true }).populate('user')
       return updatedWage
 
     } catch (error) {
-      logger.error(`[WagesRepository][updateWage] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][updateWage] :: ${error.message}`, error)
       throw error
     }
   }
@@ -82,7 +83,7 @@ class WagesRepository {
       return deletedWage
       
     } catch (error) {
-      logger.error(`[WagesRepository][deleteWage] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][deleteWage] :: ${error.message}`, error)
       throw error
     }
   }

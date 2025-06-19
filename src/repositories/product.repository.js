@@ -21,17 +21,17 @@ class ProductRepository {
 
   async getProductById(productId) {
     logger.info(`[${CONTEXT}] Fetching product by ID: ${productId}`)
-    return Product.findById(productId).populate('storage').populate('supplierId')
+    return await Product.findById(productId).populate('storage').populate('supplierId')
   }
 
   async getProductBySku(sku) {
     logger.info(`[${CONTEXT}] Fetching product by SKU: ${sku}`)
-    return Product.findOne({ sku }).populate('storage').populate('supplierId')
+    return await Product.findOne({ sku }).populate('storage').populate('supplierId')
   }
 
   async getAllProducts() {
     logger.info(`[${CONTEXT}] Fetching all products`)
-    return Product.find().populate('storage').populate('supplierId')
+    return await Product.find().populate('storage').populate('supplierId')
   }
 
   async updateProduct(productId, productDetails) {
