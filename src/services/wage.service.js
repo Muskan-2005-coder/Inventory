@@ -9,11 +9,16 @@ class WageService {
     return wages
   }
 
-  async calculateWage (userId) {
-    const { wagePerHour, hoursThisMonth } = await this.UserRepository.getUser
-    const wage = wagePerHour * hoursThisMonth
+  async calculateWage (wagePerHour, hoursThisMonth) {
+    return wage = wagePerHour * hoursThisMonth
+  }
 
-    
+  async getWage (userId) {
+    const { wagePerHour, hoursThisMonth } = await this.UserRepository.getUser
+    const totalSalary = wagePerHour * hoursThisMonth
+
+    await this.WageRepository.updateUserWage(userId, { totalSalary })
+    return totalSalary
   }
 }
 

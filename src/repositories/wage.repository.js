@@ -102,6 +102,19 @@ class WagesRepository {
     }
   }
 
+  async updateUserWage(userId, wageDetails) {
+    try {
+      logger.info(`[${CONTEXT}] Updating wage: ${wageId}`)
+      const updatedWage = await Wage.findOneAndUpdate({ userId }, wageDetails, { new: true }).populate('user')
+      logger.info(`[${CONTEXT}] Wage updated successfully: ${updatedWage._id}`)
+      return updatedWage
+
+    } catch (error) {
+      logger.error(`[${CONTEXT}][updateWage] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
   async deleteWage(wageId) {
     try {
       logger.info(`[${CONTEXT}] Deleting wage: ${wageId}`)
