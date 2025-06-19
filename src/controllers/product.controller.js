@@ -17,7 +17,7 @@ const createProduct = async (req, res) => {
 
 const getProduct = async (req, res) => {
   logger.info(`[${CONTEXT}] Fetching product with ID: ${req.params.id}`)
-  const product = await productService.getProduct(req.params.id)
+  const product = await productService.getProduct({ productId: req.params.id })
   res.status(StatusCodes.OK).json(ApiResponse.success('Product fetched successfully', { product }))
   logger.info(`[${CONTEXT}] Product fetched successfully: ${product._id}`)
 }
