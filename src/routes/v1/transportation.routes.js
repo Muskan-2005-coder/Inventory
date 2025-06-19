@@ -1,12 +1,12 @@
 /**
  * Transportation Management
  * 
- * GET    /api/v1/deliveries/         Get all deliveries
- * POST   /api/v1/deliveries/         Create a new transportation
- * GET    /api/v1/deliveries/:id      Get transportation status
- * PUT    /api/v1/deliveries/:id      Update transportation status/location
- * POST   /api/v1/deliveries/assign   Assign transportation to personnel
- * GET    /api/v1/deliveries/eta      Get predicted ETA
+ * GET    /api/v1/transports/         Get all transports
+ * POST   /api/v1/transports/         Create a new transportation
+ * GET    /api/v1/transports/:id      Get transportation status
+ * PUT    /api/v1/transports/:id      Update transportation status/location
+ * POST   /api/v1/transports/assign   Assign transportation to personnel
+ * GET    /api/v1/transports/eta      Get predicted ETA
  * 
 */ 
 
@@ -15,11 +15,11 @@ const express = require('express')
 const { transportationController } = require('../../controllers')
 const transportationRouter = express.Router()
 
-transportationRouter.get('/', transportationController.getAllDeliveries)
+transportationRouter.get('/', transportationController.getAllTransportation)
 transportationRouter.post('/', transportationController.createTransportation)
 transportationRouter.get('/:id', transportationController.getTransportationStatus)
 transportationRouter.put('/:id', transportationController.updateTransportation)
-transportationRouter.post('/assign', transportationController.assignTransportation)
-transportationRouter.get('/eta', transportationController.getEta)
+// transportationRouter.post('/assign', transportationController.assignTransportation)
+// transportationRouter.get('/eta', transportationController.getEta)
 
 module.exports = transportationRouter

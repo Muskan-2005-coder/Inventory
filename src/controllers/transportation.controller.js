@@ -22,7 +22,7 @@ const getTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Transportation fetched successfully: ${transportation._id}`);
 };
 
-const getAllDeliveries = async (req, res) => {
+const getAllTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Fetching all deliveries`);
   const deliveries = await transportationService.getAllDeliveries();
   res.status(StatusCodes.OK).json(ApiResponse.success('All deliveries fetched successfully', { length: deliveries.length, deliveries }));
@@ -79,7 +79,7 @@ const getTransportationStatus = async(req, res) => {
 module.exports = {
   createTransportation,
   getTransportation,
-  getAllDeliveries,
+  getAllTransportation,
   updateTransportation,
   deleteTransportation,
   getDeliveriesByStatus,
