@@ -17,29 +17,38 @@ const storageSchema = new mongoose.Schema({
   },
 
   dimensions: {
-    length: { type: Number, required: true },
-    width: { type: Number, required: true },
-    height: { type: Number, required: true }
+    length: { type: Number, default: 0 },
+    width: { type: Number, default: 0 },
+    height: { type: Number, default: 0 }
   },
 
   holdingCapacity: {
     type: Number,
-    required: true
+    default: 0
   },
 
-  currentVolume: {
+  capacityOccupied: {
     type: Number,
     default: 0
   },
 
-  items: [
-    {
+  Volume: {
+    type: Number,
+    default: 0
+  },
+
+  VolumeOccupied: {
+    type: Number,
+    default: 0
+  },
+
+  products: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Inventory"
+      ref: "Product"
     }
   ]
 }, { timestamps: true });
 
-const Storage = mongoose.model("Storage", storageSchema);
+const StorageModel = mongoose.model("Storage", storageSchema);
 
-module.exports = Storage;
+module.exports = StorageModel;

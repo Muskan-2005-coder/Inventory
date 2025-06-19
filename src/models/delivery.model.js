@@ -1,15 +1,3 @@
-/**
- * Package/Delivery Model Fields
- *
- * packageId        : string     // Unique identifier
- * status           : string     // Enum: "pending", "in_transit", "delivered"
- * currentLocation  : object     // { lat: Number, lng: Number }
- * destination      : string     // Delivery address
- * assignedTo       : ObjectId   // Driver (user)
- * eta              : Date       // AI-predicted ETA
- * transportMode    : string     // Enum: "truck", "bike", "drone"
- */
-
 const mongoose = require('mongoose')
 
 const deliverySchema = new mongoose.Schema({
@@ -22,6 +10,26 @@ const deliverySchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'dispatched', 'inTransit', 'delivered'],
     default: 'pending'
+  },
+
+  products: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product',
+      required: true
+    }
+  ],
+
+  startLocation: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
   },
 
   currentLocation: {
@@ -68,26 +76,3 @@ const deliverySchema = new mongoose.Schema({
 
 const deliveryModel = mongoose.model('delivery', deliverySchema)
 module.exports = deliveryModel
-
-
-/**
- * 
- * Example Usage:
- * 
- * 
-{
-  packageId: "PKG12345",
-  status: "inTransit",
-  currentLocation: {
-    coordinates: [72.834, 19.123]
-  },
-  destination: {
-    coordinates: [73.001, 18.987]
-  },
-  assignedTo: ObjectId("665f9f4f2dabc1234567890a"),
-  eta: ISODate("2025-06-18T16:00:00Z"),
-  transportMode: "truck",
-}
- * 
- * 
-*/

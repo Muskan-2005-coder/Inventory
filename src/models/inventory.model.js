@@ -1,41 +1,52 @@
 /**
  * Inventory Model Fields
- *
- * product             : ObjectId   // Reference to the Product
- * quantity            : number     // Available units
- * location            : ObjectId   // Reference to the Storage location
- * supplierId          : ObjectId   // Link to supplier (user)
- * expiryDate          : Date       // For perishable items
- * shelfLifeDays       : number     // Expected life span
+ * 
  */
 
 const mongoose = require("mongoose")
 
 const inventorySchema = new mongoose.Schema({
-  product: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-    required: true
+  name: {
+    type: String
   },
 
-  quantity: {
+  products: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product',
+      required: true
+    }
+  ],
+
+  totalCapacity: {
     type: Number,
     default: 0
   },
 
-  location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Storage',
-    default: null
+  capacityOccupied: {
+    type: Number,
+    default: 0
   },
 
-  supplierId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  }
+  storage: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Storage',
+      default: null
+    }
+  ],
 
+  inventoryLocation: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  }
 }, { timestamps: true })
 
-const inventoryModel = mongoose.model('inventory', inventorySchema)
+const inventoryModel = mongoose.model('Inventory', inventorySchema)
 module.exports = inventoryModel
