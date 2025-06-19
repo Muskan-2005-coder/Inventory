@@ -17,8 +17,11 @@ const transportationRouter = express.Router()
 
 transportationRouter.get('/', transportationController.getAllTransportation)
 transportationRouter.post('/', transportationController.createTransportation)
-transportationRouter.get('/:id', transportationController.getTransportationStatus)
+transportationRouter.get('/status/:status', transportationController.getDeliveriesByStatus)
+transportationRouter.get('/overdue', transportationController.getDeliveriesByStatus)
+transportationRouter.get('/:id', transportationController.getTransportation)
 transportationRouter.put('/:id', transportationController.updateTransportation)
+transportationRouter.delete('/:id', transportationController.cancelTransportation)
 // transportationRouter.post('/assign', transportationController.assignTransportation)
 // transportationRouter.get('/eta', transportationController.getEta)
 

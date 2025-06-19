@@ -36,7 +36,7 @@ const updateTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Transportation updated successfully: ${updatedTransportation._id}`);
 };
 
-const deleteTransportation = async (req, res) => {
+const cancelTransportation = async (req, res) => {
   logger.info(`[${CONTEXT}] Deleting transportation ID: ${req.params.id}`);
   const deletedTransportation = await transportationService.deleteTransportation(req.params.id);
   res.status(StatusCodes.OK).json(ApiResponse.success('Transportation deleted successfully', { transportation: deletedTransportation }));
@@ -81,7 +81,7 @@ module.exports = {
   getTransportation,
   getAllTransportation,
   updateTransportation,
-  deleteTransportation,
+  cancelTransportation,
   getDeliveriesByStatus,
   getOverdueDeliveries,
   updateTransportationStatus,
