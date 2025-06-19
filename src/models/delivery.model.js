@@ -6,6 +6,11 @@ const deliverySchema = new mongoose.Schema({
     required: true
   },
 
+  transportationCost: {
+    type: Number,
+    default: 0
+  },
+
   status: {
     type: String,
     enum: ['pending', 'dispatched', 'inTransit', 'delivered'],

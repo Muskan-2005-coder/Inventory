@@ -1,13 +1,14 @@
 /**
  * Inventory Model Fields
- * 
+ * Inventory Price -> Cost Price
  */
 
 const mongoose = require("mongoose")
 
 const inventorySchema = new mongoose.Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
 
   products: [{
@@ -16,6 +17,11 @@ const inventorySchema = new mongoose.Schema({
       required: true
     }
   ],
+
+  costPrice: {
+    type: Number,
+    default: 0
+  },
 
   totalCapacity: {
     type: Number,

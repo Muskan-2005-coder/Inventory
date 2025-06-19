@@ -14,14 +14,18 @@
 
 const express = require('express')
 
+const adminMiddleware = require('../../middlewares/auth.admin.middleware')
+const validator = require('../../validators/zod.validator')
 const { inventoryController } = require('../../controllers')
+const { inventoryDto } = require('../../dto')
+
 const inventoryRouter = express.Router()
 
 inventoryRouter.get('/', inventoryController.getAllInventories)
-inventoryRouter.post('/', inventoryController.addProductToInventory)
-inventoryRouter.post('/create', inventoryController.createInventory)
 inventoryRouter.get('/:id', inventoryController.getInventory)
-inventoryRouter.put('/:id', inventoryController.updateInventory)
+inventoryRouter.post('/create', adminMiddleware, validator(inventoryDto.createInventorySchema), inventoryController.createInventory)
+inventoryRouter.put('/:id', adminMiddleware, validator(inventoryDto.updateInventorySchema), inventoryController.updateInventory)
+inventoryRouter.post('/', inventoryController.addProductToInventory)
 inventoryRouter.delete('/:id', inventoryController.removeProductFromInventory)
 inventoryRouter.get('/utilization', inventoryController.getInventoryCapacityUtilization)
 // inventoryRouter.get('/low', inventoryController.getLowStockItems)

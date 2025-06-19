@@ -18,7 +18,6 @@ const validator = (schema) => (req, res, next) => {
     }
 
     req.userData = data
-    req.body = undefined
     logger.info(`[${CONTEXT}] Validation passed for ${req.method} ${req.originalUrl}`)
     next()
 
