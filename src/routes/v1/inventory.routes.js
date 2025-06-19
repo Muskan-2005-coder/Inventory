@@ -19,6 +19,7 @@ const inventoryRouter = express.Router()
 
 inventoryRouter.get('/', inventoryController.getAllInventories)
 inventoryRouter.post('/', inventoryController.addProductToInventory)
+inventoryRouter.post('/create', inventoryController.createInventory)
 inventoryRouter.get('/:id', inventoryController.getInventory)
 inventoryRouter.put('/:id', inventoryController.updateInventory)
 inventoryRouter.delete('/:id', inventoryController.removeProductFromInventory)
