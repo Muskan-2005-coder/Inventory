@@ -35,6 +35,16 @@ class AlertRepository {
     }
   }
 
+  async getUnresolvedAlerts() {
+    try {
+      const alerts = await Alert.find({ resolved: false })
+      return alerts
+    } catch (error) {
+      logger.error(`[AlertRepository][getUnresolvedAlerts] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
   async updateAlert(alertId, alertDetails) {
     try {
       const updatedAlert = await Alert.findByIdAndUpdate(alertId, alertDetails, { new: true })

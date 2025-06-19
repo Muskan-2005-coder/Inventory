@@ -90,6 +90,31 @@ class DeliveryRepository {
     }
   }
 
+  async getDeliveriesByTransportMode(transportMode) {
+    try {
+      const deliveries = await Delivery.find({ transportMode })
+      return deliveries
+
+    } catch (error) {
+      logger.error(`[DeliveryRepository][getDeliveriesByTransportMode] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getOverdueDeliveries() {
+    try {
+      const deliveries = await Delivery.find({
+        eta: { $lt: new Date() },
+        status: { $ne: 'delivered' }
+      })
+      return deliveries
+
+    } catch (error) {
+      logger.error(`[DeliveryRepository][getOverdueDeliveries] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
   async updateDelivery(deliveryId, deliveryDetails) {
     try {
       const updatedDelivery = await Delivery.findByIdAndUpdate(deliveryId, deliveryDetails, { new: true })
