@@ -14,7 +14,7 @@ const mongoose = require('mongoose')
 const wageSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'User',
     required: true
   },
 
@@ -25,7 +25,6 @@ const wageSchema = new mongoose.Schema({
 
   hoursWorked: {
     type: Number,
-    required: true,
     default: 0
   },
 
@@ -47,5 +46,5 @@ const wageSchema = new mongoose.Schema({
 
 }, { timestamps: true })
 
-const wageModel = mongoose.model('wage', wageSchema)
+const wageModel = mongoose.model('Wage', wageSchema)
 module.exports = wageModel

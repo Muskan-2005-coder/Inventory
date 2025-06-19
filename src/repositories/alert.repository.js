@@ -1,6 +1,8 @@
 const Alert = require('../models/alert.model')
 const logger = require('../utils/logger')
 
+const CONTEXT = 'AlertRepository'
+
 class AlertRepository {
   async createAlert(alertDetails) {
     try {
@@ -8,7 +10,7 @@ class AlertRepository {
       return alert
       
     } catch (error) {
-      logger.error(`[AlertRepository][createAlert] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][createAlert] :: ${error.message}`, error)
       throw error
     }
   }
@@ -19,7 +21,7 @@ class AlertRepository {
       return alert
 
     } catch (error) {
-      logger.error(`[AlertRepository][getAlertById] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getAlertById] :: ${error.message}`, error)
       throw error
     }
   }
@@ -30,7 +32,17 @@ class AlertRepository {
       return alerts
 
     } catch (error) {
-      logger.error(`[AlertRepository][getAllAlerts] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getAllAlerts] :: ${error.message}`, error)
+      throw error
+    }
+  }
+
+  async getUnresolvedAlerts() {
+    try {
+      const alerts = await Alert.find({ resolved: false })
+      return alerts
+    } catch (error) {
+      logger.error(`[${CONTEXT}][getUnresolvedAlerts] :: ${error.message}`, error)
       throw error
     }
   }
@@ -41,7 +53,7 @@ class AlertRepository {
       return updatedAlert
 
     } catch (error) {
-      logger.error(`[AlertRepository][updateAlert] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][updateAlert] :: ${error.message}`, error)
       throw error
     }
   }
@@ -52,7 +64,7 @@ class AlertRepository {
       return deletedAlert
 
     } catch (error) {
-      logger.error(`[AlertRepository][deleteAlert] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][deleteAlert] :: ${error.message}`, error)
       throw error
     }
   }
