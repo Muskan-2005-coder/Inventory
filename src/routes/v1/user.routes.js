@@ -16,7 +16,7 @@ const express = require('express')
 const { userController } = require('../../controllers')
 const validator = require('../../validators/zod.validator')
 const userValidators = require('../../dto/user.dto')
-const { authMiddleware } = require('../../middlewares')
+const { authMiddleware, adminMiddleware } = require('../../middlewares')
 
 const userRouter = express.Router()
 
@@ -28,7 +28,7 @@ userRouter.get('/', userController.getAllUsers)
 userRouter.put('/', authMiddleware, validator(userValidators.updateUserSchema), userController.updateProfile)
 userRouter.put('/update_password', authMiddleware, validator(userValidators.passwordSchema), userController.updatePassword)
 // userRouter.put('/', authMiddleware, validator(userValidators.updateUserSchema), userController.updateProfile)
-// userRouter.put('/:id', userController.ADupdateProfile)  // ADMIN
-userRouter.delete('/:id', userController.ADdeleteProfile) // ADMIN
+userRouter.put('/:id', adminMiddleware, userController.ADupdateProfile)  // ADMIN
+userRouter.delete('/:id', adminMiddleware, userController.ADdeleteProfile) // ADMIN
 
 module.exports = userRouter

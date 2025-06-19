@@ -15,7 +15,7 @@ class UserService {
     userDetails.password = await bcrypt.hash(userDetails.password, 10)
     const user = await this.UserRepository.registerUser(userDetails)
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, jwtOptions)
+    const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET_KEY, jwtOptions)
     user.password = undefined
     return { user, token }
   }
@@ -27,7 +27,7 @@ class UserService {
     const isPassword = await bcrypt.compare(userDetails.password, user.password)
     if(!isPassword) throw new NotFoundError('Incorrect Credentials')
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, jwtOptions)
+    const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET_KEY, jwtOptions)
     user.password = undefined
     return { user, token }
   }
@@ -51,6 +51,10 @@ class UserService {
   updatePassword = async (userId, updateData) => {
     updateData.password = await bcrypt.hash(updateData.password, 10)
     return await this.UserRepository.updateUser(userId, updateData)
+  }
+
+  ADdeleteProfile = async (userId) => {
+    return await this.UserRepository.deleteUserWithId(userId)
   }
 
 }

@@ -50,7 +50,13 @@ const logout = async (req, res) => {
 }
 
 const ADdeleteProfile = async (req, res) => {
-  res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: "Not Implemented Yet "})
+  await userService.ADdeleteProfile(req.params.id)
+  res.status(StatusCodes.OK).json({ message: "User Deleted Successfully"})
+}
+
+const ADupdateProfile = async (req, res) => {
+  await userService.ADdeleteProfile(req.params.id)
+  res.status(StatusCodes.OK).json({ message: "User Deleted Successfully"})
 }
 
 // All admin privileged Routes will start with AD (will add later)
@@ -63,5 +69,6 @@ module.exports = {
   updateProfile,
   ADdeleteProfile,
   updatePassword,
-  logout
+  logout,
+  ADupdateProfile
 }
