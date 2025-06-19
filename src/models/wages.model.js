@@ -9,7 +9,7 @@
  * calculatedAt  : Date       // Payroll run date
  */
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const wageSchema = new mongoose.Schema({
   userId: {
@@ -45,7 +45,7 @@ const wageSchema = new mongoose.Schema({
     default: Date.now
   }
 
-}, { timestamps: true });
+}, { timestamps: true })
 
-const wageModel = mongoose.model('wage', wageSchema);
-module.exports = wageModel;
+const wageModel = mongoose.model('wage', wageSchema)
+module.exports = wageModel

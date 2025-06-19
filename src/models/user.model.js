@@ -17,7 +17,7 @@
  * // ! -> we will be using user._id of mongoDB as our EmployeeId (empId)
  */
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
   name: {

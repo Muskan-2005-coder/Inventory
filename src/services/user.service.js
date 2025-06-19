@@ -12,7 +12,7 @@ const { JWT_SECRET_KEY } = require('./../config/server.config')
 const { jwtOptions } = require('../config/auth.config')
 const { NotFoundError } = require('../errors/client.error')
 
-const CONTEXT = 'UserService';
+const CONTEXT = 'UserService'
 
 class UserService {
   constructor(UserRepository) {

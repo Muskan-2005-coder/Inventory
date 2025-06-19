@@ -3,11 +3,11 @@
  * NOT the LOGIC behind our main Business -> So it's like our CRUD Manager for DB
  */
 
-const { BadRequestError } = require("../errors/client.error");
+const { BadRequestError } = require("../errors/client.error")
 const { Users } = require("../models")
-const logger = require('../utils/logger');
+const logger = require('../utils/logger')
 
-const CONTEXT = 'UserRepository';
+const CONTEXT = 'UserRepository'
 
 class UserRepository {
   async registerUser (userDetails) {

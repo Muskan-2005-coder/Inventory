@@ -1,19 +1,19 @@
-const { createLogger, format, transports } = require('winston');
-const path = require('path');
+const { createLogger, format, transports } = require('winston')
+const path = require('path')
 
 function simpleLogFormat({ colorize = false } = {}) {
   return format.printf((info) => {
-    const level = info.level.toUpperCase().padEnd(5, ' ');
+    const level = info.level.toUpperCase().padEnd(5, ' ')
     const levelDisplay = colorize
       ? format.colorize().colorize(info.level, level)
-      : level;
-    const stack = info.stack ? `\n${info.stack}` : '';
-    let meta = '';
+      : level
+    const stack = info.stack ? `\n${info.stack}` : ''
+    let meta = ''
     if (info.meta && Object.keys(info.meta).length > 0) {
-      meta = ` :: ${JSON.stringify(info.meta)}`;
+      meta = ` :: ${JSON.stringify(info.meta)}`
     }
-    return `${info.timestamp} [${levelDisplay}] ${info.message}${meta}${stack}`;
-  });
+    return `${info.timestamp} [${levelDisplay}] ${info.message}${meta}${stack}`
+  })
 }
 
 const logger = createLogger({
@@ -52,6 +52,6 @@ const logger = createLogger({
     })
   ],
   exitOnError: false,
-});
+})
 
 module.exports = logger

@@ -1,9 +1,9 @@
 const { StatusCodes } = require('http-status-codes')
 
-const logger = require('../utils/logger');
-const { BaseError } = require('../errors');
+const logger = require('../utils/logger')
+const { BaseError } = require('../errors')
 
-const CONTEXT = 'ErrorMiddleware';
+const CONTEXT = 'ErrorMiddleware'
 
 const errorMw = (err, req, res, next) => {
 
@@ -14,7 +14,7 @@ const errorMw = (err, req, res, next) => {
       url: req.originalUrl,
       body: req.body
     }
-  });
+  })
 
   if (err instanceof BaseError) {
     return res.status(err.statusCode).json({
@@ -22,9 +22,9 @@ const errorMw = (err, req, res, next) => {
       message: err.message,
       error: {
         name: err.name,
-        details: err.details || []
+        details: err.meta || []
       }
-    });
+    })
   }
 
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -34,7 +34,7 @@ const errorMw = (err, req, res, next) => {
       name: 'InternalServerError',
       details: []
     }
-  });
+  })
 }
 
 module.exports = errorMw

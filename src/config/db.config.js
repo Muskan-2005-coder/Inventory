@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const logger = require("../utils/logger");
-const { MONGO_URI } = require("./server.config");
+const mongoose = require("mongoose")
+const logger = require("../utils/logger")
+const { MONGO_URI } = require("./server.config")
 
 async function connectDB() {
   logger.info('Connecting to DB...')
