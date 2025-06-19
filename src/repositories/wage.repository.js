@@ -35,6 +35,36 @@ class WagesRepository {
     }
   }
 
+  async getWagesByMonth(year, month) {
+    try {
+      // Note: month is 1-indexed (1 for Jan, 12 for Dec)
+      const startDate = new Date(year, month - 1, 1);
+      const endDate = new Date(year, month, 1);
+      const wages = await Wage.find({
+        month: {
+          $gte: startDate,
+          $lt: endDate
+        }
+      });
+      return wages;
+
+    } catch (error) {
+      logger.error(`[WagesRepository][getWagesByMonth] :: ${error.message}`, error);
+      throw error;
+    }
+  }
+
+  async getOverworkedWages() {
+    try {
+      const wages = await Wage.find({ overworked: true });
+      return wages;
+
+    } catch (error) {
+      logger.error(`[WagesRepository][getOverworkedWages] :: ${error.message}`, error);
+      throw error;
+    }
+  }
+
   async updateWage(wageId, wageDetails) {
     try {
       const updatedWage = await Wage.findByIdAndUpdate(wageId, wageDetails, { new: true })
