@@ -26,13 +26,13 @@
  * GET    /api/v1/inventory/heatmap   Location-wise distribution data
  * 
  * 
- * Delivery Management
+ * Transportation Management
  * 
  * GET    /api/v1/deliveries/         Get all deliveries
- * POST   /api/v1/deliveries/         Create a new delivery
- * GET    /api/v1/deliveries/:id      Get delivery status
- * PUT    /api/v1/deliveries/:id      Update delivery status/location
- * POST   /api/v1/deliveries/assign   Assign delivery to personnel
+ * POST   /api/v1/deliveries/         Create a new transportation
+ * GET    /api/v1/deliveries/:id      Get transportation status
+ * PUT    /api/v1/deliveries/:id      Update transportation status/location
+ * POST   /api/v1/deliveries/assign   Assign transportation to personnel
  * GET    /api/v1/deliveries/eta      Get predicted ETA
  * 
  * 
@@ -62,7 +62,7 @@ const express = require('express')
 
 const userRouter = require('./user.routes')
 const inventoryRouter = require('./inventory.routes')
-const deliveryRouter = require('./delivery.routes')
+const transportationRouter = require('./transportation.routes')
 const wageRouter = require('./wage.router')
 const alertRouter = require('./alert.router')
 
@@ -70,7 +70,7 @@ const v1Router = express.Router()
 
 v1Router.use('/users', userRouter)
 v1Router.use('/inventory', inventoryRouter)
-v1Router.use('/deliveries', deliveryRouter)
+v1Router.use('/deliveries', transportationRouter)
 v1Router.use('/wages', wageRouter)
 v1Router.use('/alerts', alertRouter)
 

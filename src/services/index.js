@@ -3,6 +3,6 @@ module.exports = {
   WageService: require('./wage.service'),
   ProductService: require('./product.service'),
   AlertService: require('./alert.service'),
-  DeliveryService: require('./delivery.service'),
+  TransportationService: require('./transportation.service'),
   InventoryService: require('./inventory.service')
 }

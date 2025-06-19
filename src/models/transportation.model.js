@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const deliverySchema = new mongoose.Schema({
+const transportationSchema = new mongoose.Schema({
   packageId: {
     type: String,
     required: true
@@ -79,5 +79,5 @@ const deliverySchema = new mongoose.Schema({
   },
 }, { timestamps: true })
 
-const deliveryModel = mongoose.model('delivery', deliverySchema)
-module.exports = deliveryModel
+const transportationModel = mongoose.model('transportation', transportationSchema)
+module.exports = transportationModel

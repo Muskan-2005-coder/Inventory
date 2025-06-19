@@ -1,31 +1,31 @@
-const Delivery = require('../models/delivery.model')
+const Transportation = require('../models/transportation.model')
 const logger = require('../utils/logger')
 
-const CONTEXT = 'DeliveryRepository'
+const CONTEXT = 'TransportationRepository'
 
-class DeliveryRepository {
-  async createDelivery(deliveryDetails) {
+class TransportationRepository {
+  async createTransportation(transportationDetails) {
     try {
-      logger.info(`[${CONTEXT}] Creating new delivery with details: ${JSON.stringify(deliveryDetails)}`)
-      const delivery = await Delivery.create(deliveryDetails)
-      logger.info(`[${CONTEXT}] Delivery created successfully: ${delivery._id}`)
-      return delivery
+      logger.info(`[${CONTEXT}] Creating new transportation with details: ${JSON.stringify(transportationDetails)}`)
+      const transportation = await Transportation.create(transportationDetails)
+      logger.info(`[${CONTEXT}] Transportation created successfully: ${transportation._id}`)
+      return transportation
 
     } catch (error) {
-      logger.error(`[${CONTEXT}][createDelivery] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][createTransportation] :: ${error.message}`, error)
       throw error
     }
   }
 
-  async getDeliveryById(deliveryId) {
+  async getTransportationById(transportationId) {
     try {
-      logger.info(`[${CONTEXT}] Fetching delivery by ID: ${deliveryId}`)
-      const delivery = await Delivery.findById(deliveryId)
-      logger.info(`[${CONTEXT}] Delivery fetched successfully: ${delivery._id}`)
-      return delivery
+      logger.info(`[${CONTEXT}] Fetching transportation by ID: ${transportationId}`)
+      const transportation = await Transportation.findById(transportationId)
+      logger.info(`[${CONTEXT}] Transportation fetched successfully: ${transportation._id}`)
+      return transportation
 
     } catch (error) {
-      logger.error(`[${CONTEXT}][getDeliveryById] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getTransportationById] :: ${error.message}`, error)
       throw error
     }
   }
@@ -33,7 +33,7 @@ class DeliveryRepository {
   async getAllDeliveries() {
     try {
       logger.info(`[${CONTEXT}] Fetching all deliveries`)
-      const deliveries = await Delivery.find()
+      const deliveries = await Transportation.find()
       logger.info(`[${CONTEXT}] Fetched all deliveries successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -43,15 +43,15 @@ class DeliveryRepository {
     }
   }
 
-  async getDeliveryByAssignee(assignedTo) {
+  async getTransportationByAssignee(assignedTo) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries assigned to: ${assignedTo}`)
-      const deliveries = await Delivery.find({ assignedTo })
+      const deliveries = await Transportation.find({ assignedTo })
       logger.info(`[${CONTEXT}] Fetched deliveries for assignee ${assignedTo} successfully. Count: ${deliveries.length}`)
       return deliveries
 
     } catch (error) {
-      logger.error(`[${CONTEXT}][getDeliveryByAssignee] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][getTransportationByAssignee] :: ${error.message}`, error)
       throw error
     }
   }
@@ -59,7 +59,7 @@ class DeliveryRepository {
   async getDeliveriesByPackageId(packageId) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries for package ID: ${packageId}`)
-      const deliveries = await Delivery.find({ packageId })
+      const deliveries = await Transportation.find({ packageId })
       logger.info(`[${CONTEXT}] Fetched deliveries for package ID ${packageId} successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -72,7 +72,7 @@ class DeliveryRepository {
   async getDeliveriesByDestination(destination) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries with destination: ${destination}`)
-      const deliveries = await Delivery.find({ destination })
+      const deliveries = await Transportation.find({ destination })
       logger.info(`[${CONTEXT}] Fetched deliveries for destination ${destination} successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -85,7 +85,7 @@ class DeliveryRepository {
   async getDeliveriesByOrigin(startLocation) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries with origin: ${startLocation}`)
-      const deliveries = await Delivery.find({ startLocation })
+      const deliveries = await Transportation.find({ startLocation })
       logger.info(`[${CONTEXT}] Fetched deliveries for origin ${startLocation} successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -98,7 +98,7 @@ class DeliveryRepository {
   async getDeliveriesByCurrentLocation(currentLocation) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries with current location: ${currentLocation}`)
-      const deliveries = await Delivery.find({ currentLocation })
+      const deliveries = await Transportation.find({ currentLocation })
       logger.info(`[${CONTEXT}] Fetched deliveries for current location ${currentLocation} successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -111,7 +111,7 @@ class DeliveryRepository {
   async getDeliveriesByStatus(status) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries with status: ${status}`)
-      const deliveries = await Delivery.find({ status })
+      const deliveries = await Transportation.find({ status })
       logger.info(`[${CONTEXT}] Fetched deliveries for status ${status} successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -124,7 +124,7 @@ class DeliveryRepository {
   async getDeliveriesByTransportMode(transportMode) {
     try {
       logger.info(`[${CONTEXT}] Fetching deliveries with transport mode: ${transportMode}`)
-      const deliveries = await Delivery.find({ transportMode })
+      const deliveries = await Transportation.find({ transportMode })
       logger.info(`[${CONTEXT}] Fetched deliveries for transport mode ${transportMode} successfully. Count: ${deliveries.length}`)
       return deliveries
 
@@ -137,7 +137,7 @@ class DeliveryRepository {
   async getOverdueDeliveries() {
     try {
       logger.info(`[${CONTEXT}] Fetching overdue deliveries`)
-      const deliveries = await Delivery.find({
+      const deliveries = await Transportation.find({
         eta: { $lt: new Date() },
         status: { $ne: 'delivered' }
       })
@@ -150,31 +150,31 @@ class DeliveryRepository {
     }
   }
 
-  async updateDelivery(deliveryId, deliveryDetails) {
+  async updateTransportation(transportationId, transportationDetails) {
     try {
-      logger.info(`[${CONTEXT}] Updating delivery: ${deliveryId}`)
-      const updatedDelivery = await Delivery.findByIdAndUpdate(deliveryId, deliveryDetails, { new: true })
-      logger.info(`[${CONTEXT}] Delivery updated successfully: ${updatedDelivery._id}`)
-      return updatedDelivery
+      logger.info(`[${CONTEXT}] Updating transportation: ${transportationId}`)
+      const updatedTransportation = await Transportation.findByIdAndUpdate(transportationId, transportationDetails, { new: true })
+      logger.info(`[${CONTEXT}] Transportation updated successfully: ${updatedTransportation._id}`)
+      return updatedTransportation
 
     } catch (error) {
-      logger.error(`[${CONTEXT}][updateDelivery] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][updateTransportation] :: ${error.message}`, error)
       throw error
     }
   }
 
-  async deleteDelivery(deliveryId) {
+  async deleteTransportation(transportationId) {
     try {
-      logger.info(`[${CONTEXT}] Deleting delivery: ${deliveryId}`)
-      const deletedDelivery = await Delivery.findByIdAndDelete(deliveryId)
-      logger.info(`[${CONTEXT}] Delivery deleted successfully: ${deletedDelivery._id}`)
-      return deletedDelivery
+      logger.info(`[${CONTEXT}] Deleting transportation: ${transportationId}`)
+      const deletedTransportation = await Transportation.findByIdAndDelete(transportationId)
+      logger.info(`[${CONTEXT}] Transportation deleted successfully: ${deletedTransportation._id}`)
+      return deletedTransportation
       
     } catch (error) {
-      logger.error(`[${CONTEXT}][deleteDelivery] :: ${error.message}`, error)
+      logger.error(`[${CONTEXT}][deleteTransportation] :: ${error.message}`, error)
       throw error
     }
   }
 }
 
-module.exports = DeliveryRepository
+module.exports = TransportationRepository

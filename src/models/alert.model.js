@@ -4,7 +4,7 @@
  * type         : string     // Enum like: "low_stock", "delay", "overwork"
  * triggeredOn  : Date       // When the alert was triggered
  * resolved     : boolean    // Whether the alert has been cleared by admin
- * targetId     : ObjectId   // Reference to the related entity (e.g., inventoryId, deliveryId, etc.)
+ * targetId     : ObjectId   // Reference to the related entity (e.g., inventoryId, transportationId, etc.)
  * message      : string     // description of the alert
  */
 
@@ -12,7 +12,7 @@ const alertTypes = [
   "defaultAlert",
   "lowStock",
   "outOfStock",
-  "deliveryDelay",
+  "transportationDelay",
   "missedEta",
   "overwork",
   "inventoryMismatch",

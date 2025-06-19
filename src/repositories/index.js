@@ -1,6 +1,6 @@
 module.exports = {
   AlertRepository: require("./alert.repository"),
-  DeliveryRepository: require("./delivery.repository"),
+  TransportationRepository: require("./transportation.repository"),
   InventoryRepository : require("./inventory.repository"),
   UserRepository : require("./user.repository"),
   WagesRepository : require("./wage.repository"),
