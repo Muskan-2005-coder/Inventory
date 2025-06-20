@@ -18,6 +18,7 @@ const adminMiddleware = require('../../middlewares/auth.admin.middleware')
 const validator = require('../../validators/zod.validator')
 const { inventoryController } = require('../../controllers')
 const { inventoryDto } = require('../../dto')
+const authMiddleware = require('../../middlewares/auth.middleware')
 
 const inventoryRouter = express.Router()
 
@@ -26,9 +27,9 @@ inventoryRouter.get('/:id', inventoryController.getInventory)
 inventoryRouter.post('/create', adminMiddleware, validator(inventoryDto.createInventorySchema), inventoryController.createInventory)
 inventoryRouter.put('/:id', adminMiddleware, validator(inventoryDto.updateInventorySchema), inventoryController.updateInventory)
 inventoryRouter.delete('/:id', adminMiddleware, inventoryController.deleteInventory)
-inventoryRouter.post('/:id/products', inventoryController.addProductToInventory)
+inventoryRouter.post('/:id/products', authMiddleware, inventoryController.addProductToInventory)
 inventoryRouter.get('/:id/products', inventoryController.getAllProductsInInventory)
-inventoryRouter.delete('/:id/products', inventoryController.removeProductFromInventory)
+inventoryRouter.delete('/:id/products', authMiddleware, inventoryController.removeProductFromInventory)
 inventoryRouter.get('/:id/utilization', inventoryController.getInventoryCapacityUtilization)
 
 module.exports = inventoryRouter

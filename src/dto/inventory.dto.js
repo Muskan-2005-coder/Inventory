@@ -21,6 +21,8 @@ const updateInventorySchema = z.object({
   path: []
 })
 
+// const addProductToInventory
+
 module.exports = {
   createInventorySchema,
   updateInventorySchema
