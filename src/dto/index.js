@@ -1,4 +1,6 @@
 module.exports = {
   userDto: require('./user.dto'),
-  inventoryDto: require('./inventory.dto')
+  inventoryDto: require('./inventory.dto'),
+  productDto: require('./product.dto'),
+  orderDto: require('./order.dto')
 }

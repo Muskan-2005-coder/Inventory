@@ -6,6 +6,10 @@ const productSchema = new mongoose.Schema({
     required: true
   },
 
+  batchId: {
+    type: String
+  },
+
   productCategory: {
     type: String,
   },
@@ -15,7 +19,8 @@ const productSchema = new mongoose.Schema({
   },
 
   price: {
-    type: String
+    type: Number,
+    default: 0
   },
 
   quantity: {
@@ -32,10 +37,6 @@ const productSchema = new mongoose.Schema({
     length: { type: Number, default: 0 },
     width: { type: Number, default: 0 },
     height: { type: Number, default: 0 }
-  },
-
-  category: {
-    type: String
   },
 
   description: {
