@@ -4,7 +4,7 @@ const cookieOptions = {
 }
 
 const jwtOptions = {
-  expiresIn: '7d'           // 7 days
+  expiresIn: '7d'           
 }
 
 module.exports = {
