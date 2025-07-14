@@ -17,7 +17,7 @@ const Navbar = () => {
       </div>
       <div>
         <a href="/" style={{ color: "white", marginRight: "1rem", textDecoration: "none" }}>Dashboard</a>
-        <a href="/restocking" style={{ color: "white", marginRight: "1rem", textDecoration: "none" }}>Restocking</a>
+        <a href="/restock" style={{ color: "white", marginRight: "1rem", textDecoration: "none" }}>Restocking</a>
         <a href="/alerts" style={{ color: "white", marginRight: "1rem", textDecoration: "none" }}>Alerts</a>
         <a href="/transport" style={{ color: "white", marginRight: "1rem", textDecoration: "none" }}>Transport</a>
         <a href="/admin" style={{ color: "white", textDecoration: "none" }}>Admin</a>

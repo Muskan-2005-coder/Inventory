@@ -1,13 +1,13 @@
-import React from "react";
+import styles from "../styles/TransportDashboard.module.css";
 import ModeSelector from "../components/Transport/ModeSelector";
 import CarbonTracker from "../components/Transport/CarbonTracker";
 
 const TransportDashboard = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold text-center mb-6">Smart Transport Dashboard</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className={styles.container}>
+           <h1 className={styles.TransportTitle}>📦 Transportation</h1>
+      
+      <div className={styles.gridLayout}>
         <ModeSelector />
         <CarbonTracker />
       </div>

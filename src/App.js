@@ -20,7 +20,7 @@ function App() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<AdminPanel />} />
-            <Route path="/smart-restocking" element={<SmartRestocking />} />
+            <Route path="/restock" element={<SmartRestocking />} />
             <Route path="/alerts" element={<AlertDashboard />} />
             <Route path="/transport" element={<TransportDashboard />} />
             {/* Add other routes here */}

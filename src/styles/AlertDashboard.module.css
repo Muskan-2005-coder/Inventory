@@ -1,0 +1,27 @@
+
+
+.container {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.alertBox {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.alertBox:hover {
+  transform: scale(1.02);
+}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api"; // Adjust port or path if needed
+const API_BASE_URL = "http://localhost:5000/api";
 
 // Smart Restocking APIs
 export const getSupplierSuggestions = () => axios.get(`${API_BASE_URL}/inventory/suggestions`);
@@ -21,5 +21,5 @@ export const getUserRoles = () => axios.get(`${API_BASE_URL}/admin/users`);
 export const updateUserRole = (userId, role) => axios.put(`${API_BASE_URL}/admin/users/${userId}`, { role });
 export const getReports = () => axios.get(`${API_BASE_URL}/admin/reports`);
 
-// Other features (e.g., stock redistribution, alternative suppliers) can be added similarly
+
 

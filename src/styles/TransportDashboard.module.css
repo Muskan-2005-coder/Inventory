@@ -1,0 +1,35 @@
+/* TransportDashboard.module.css */
+
+.TransportTitle {
+  grid-column: 1 / -1; /* Make title span all columns */
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem;
+  color: #065f46;
+  background-color: #d1fae5;
+  border-radius: 0.75rem;
+}
+
+.container {
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.gridLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .gridLayout {
+    grid-template-columns: 1fr 1fr;
+  }
+}

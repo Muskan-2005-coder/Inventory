@@ -1,16 +1,27 @@
 import React from "react";
+import styles from "../styles/SmartRestocking.module.css";
+
 import SupplierSuggestions from "../components/Restock/SupplierSuggestions";
 import BulkDiscounts from "../components/Restock/BulkDiscounts";
 import ExpiryAlerts from "../components/Restock/ExpiryAlerts";
 
 const SmartRestockingPage = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4 text-center">Smart Restocking System</h1>
+    <div className={styles.smartRestockingContainer}>
+      <h1 className={styles.smartRestockingTitle}>📦 Smart Restocking Alert Dashboard</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className={styles.verticalSection}>
+        <h2 className={styles.sectionHeading}>🚛 Supplier Suggestions</h2>
         <SupplierSuggestions />
+      </div>
+
+      <div className={styles.verticalSection}>
+        <h2 className={styles.sectionHeading}>💰 Bulk Discounts</h2>
         <BulkDiscounts />
+      </div>
+
+      <div className={styles.verticalSection}>
+        <h2 className={styles.sectionHeading}>⚠️ Expiry Alerts</h2>
         <ExpiryAlerts />
       </div>
     </div>
