@@ -1,5 +1,4 @@
-# This is backend part. 
-
+# This is backend part
 
 # Getting Started with Create React App
 
