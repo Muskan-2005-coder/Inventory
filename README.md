@@ -1,2 +1,2 @@
 
-This is frontend of Inventory Management System.
+# This is frontend of Inventory Management System.
