@@ -1,8 +1,14 @@
 const dotenv = require("dotenv")
 dotenv.config()
 
+// module.exports = {
+//   PORT: process.env.PORT,
+//   MONGO_URI: process.env.MONGO_URI,
+//   JWT_SECRET_KEY: process.env.JWT_SECRET_KEY
+// }
+
+
+// Central place for environment variables
 module.exports = {
-  PORT: process.env.PORT,
-  MONGO_URI: process.env.MONGO_URI,
-  JWT_SECRET_KEY: process.env.JWT_SECRET_KEY
-}
+  PORT: process.env.PORT || 5000,
+};

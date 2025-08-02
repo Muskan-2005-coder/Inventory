@@ -1,12 +1,33 @@
-const mongoose = require("mongoose")
-const logger = require("../utils/logger")
-const { MONGO_URI } = require("./server.config")
+// const mongoose = require("mongoose");
 
-async function connectDB() {
-  logger.info('Connecting to DB...')
-  await mongoose.connect(MONGO_URI)
-  logger.info('Connected to DB 🔥')
-}
+// const connectDB = async () => {
+//   try {
+//     const MONGO_URI =
+//       process.env.MONGO_URI || "mongodb://127.0.0.1:27017/inventoryDB";
+//     await mongoose.connect(MONGO_URI);
+//     console.log("✅ MongoDB connected");
+//   } catch (err) {
+//     console.error("❌ MongoDB connection error:", err);
+//     process.exit(1);
+//   }
+// };
 
-module.exports = connectDB
+// module.exports = connectDB;
 
+
+
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    const MONGO_URI =
+      process.env.MONGO_URI || "mongodb://127.0.0.1:27017/inventoryDB";
+    await mongoose.connect(MONGO_URI);
+    console.log("✅ MongoDB connected");
+  } catch (err) {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
