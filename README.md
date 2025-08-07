@@ -1,4 +1,4 @@
-# This is backend code part
+# This is backend of inventory management system
 
 # Getting Started with Create React App
 
